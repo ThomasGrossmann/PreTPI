@@ -21,6 +21,7 @@
 >Les réels concurrents sont, à mon avis, les autres frameworks/langages multi-plateformes suivants :
 
 - React Native (framework JavaScript)
+  -
 - Xamarin (.NET et C#)
 - Ionic (AngularJS, Cordova et Node JS, tous frameworks JavaScript)
 
@@ -28,8 +29,11 @@
 >Les développeurs de Flutter recommandent l'utilisation d'**Android Studio** ou **IntelliJ** avec installation des plugins Dart et Flutter. D'autres sont concurrents.
 
 - ATOM
+  - Pas un "vrai" IDE, besoin d'avoir énormément de plugins et packages en plus
 - Emacs
+  - 
 - Visual Studio Code
+  -
 
 **ATOM** et **Emacs** ne sont pas de véritables IDE mais de "simples" éditeurs de texte. Je ne vais donc pas en tenir compte et choisir Android Studio. Les fonctionnalités entre les IDE sont relativement similaires et la plupart de temps c'est à choix.
 
@@ -67,4 +71,3 @@ Installation du plugin Flutter :
 Nouveau projet :
 - Dans "Projects", "New Flutter Project"
 - Dans "Flutter", entrer le chemin du SDK précédemment extrait
--

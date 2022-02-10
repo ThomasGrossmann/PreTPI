@@ -9,9 +9,8 @@
 
 #### *Avantages*
 - Un seul design pour **Android et iOS**
-- Bonnes performances
-- Développement rapide et efficace
 - Communauté grandissante donc grand support
+- Outil fonctionnant également sur ordinateur et navigateur (application PC ou Webapp)
 
 #### *Inconvénients*
 - Les applications ont tendance à être lourdes (taille de l'application)
@@ -21,19 +20,28 @@
 >Les réels concurrents sont, à mon avis, les autres frameworks/langages multi-plateformes suivants :
 
 - React Native (framework JavaScript)
-  -
+  - Les avantages et inconvénients sont quasiment similaires à Flutter
+  - Basé sur ReactJS, framework Web, donc facilement transposable en Webapp et meilleur si l'on veut faire également du Web
 - Xamarin (.NET et C#)
+  - 2 façons, Forms Xamarin et Xamarin Native
+    - Mêmes interfaces partout, 90-95% du code partageable, pas idéal pour les apps avec beaucoup de data
+    - Interfaces différentes partout, 70% du code partageable, recommandé lorsque les interfaces custom sont plus importantes que le partage de code
+  - Grâce à .NET, donne accès aux SDKs natifs d'Android et iOS directement.
+  - Support technique de Microsoft
 - Ionic (AngularJS, Cordova et Node JS, tous frameworks JavaScript)
+  - Comme React Native, utilise un bridge pour fonctionner en "natif", ce qui peut affecter les performances
+  - Système dépendant énormément des plugins
 
 #### *IDE / Éditeurs*
 >Les développeurs de Flutter recommandent l'utilisation d'**Android Studio** ou **IntelliJ** avec installation des plugins Dart et Flutter. D'autres sont concurrents.
 
 - ATOM
   - Pas un "vrai" IDE, besoin d'avoir énormément de plugins et packages en plus
+  - Tous les plugins en plus devront être justifiés lors de la défense
 - Emacs
-  - 
+  - Comme ATOM, pas un "vrai" IDE, plugins à installer et à défendre plus tard "pour pas grand chose"
 - Visual Studio Code
-  -
+  - J'aurai pu choisir de partir sur VSCode mais le fait de pouvoir simuler le téléphone et voir son application mise à jour en temps réel est vraiment bien,
 
 **ATOM** et **Emacs** ne sont pas de véritables IDE mais de "simples" éditeurs de texte. Je ne vais donc pas en tenir compte et choisir Android Studio. Les fonctionnalités entre les IDE sont relativement similaires et la plupart de temps c'est à choix.
 

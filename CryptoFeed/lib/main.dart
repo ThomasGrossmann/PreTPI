@@ -111,19 +111,25 @@ class NewsPage extends StatefulWidget {
 }
 class _NewsPageState extends State<NewsPage> {
   List<dynamic> _news = [];
+  int currentPage = 1;
+
+  late ScrollController controller;
 
   void getNews() async {
     var result = await http.get(Uri.parse(
-        "https://cryptopanic.com/api/v1/posts/?auth_token=ad15ecca83498d46e8e9e34dd2f18a2ba1320bc4&public=true"));
+        "https://cryptopanic.com/api/v1/posts/?auth_token=ad15ecca83498d46e8e9e34dd2f18a2ba1320bc4&public=true&page=$currentPage"));
     setState(() {
       _news = json.decode(result.body)['results'];
     });
+    currentPage++;
   }
+
 
   Widget _buildNews() {
     return _news.isNotEmpty
         ? RefreshIndicator(
-      child: ListView.builder(
+      child: ListView.separated(
+        controller: controller,
         padding: const EdgeInsets.all(8),
         itemCount: _news.length,
         itemBuilder: (BuildContext context, int index) {
@@ -139,7 +145,7 @@ class _NewsPageState extends State<NewsPage> {
               ],
             ),
           );
-        },
+        }, separatorBuilder: (BuildContext context, int index) => const Divider(),
       ),
       onRefresh: _getValues,
     )
@@ -149,6 +155,7 @@ class _NewsPageState extends State<NewsPage> {
   Future<void> _getValues() async {
     setState(() {
       getNews();
+      currentPage = 1;
     });
   }
 

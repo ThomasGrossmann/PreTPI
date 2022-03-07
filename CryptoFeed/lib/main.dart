@@ -275,11 +275,9 @@ class _OneNewsPageState extends State<OneNewsPage> {
                 subtitle: Text(widget.source.name),
                 onTap: () => url.launch(widget.url, forceWebView: true),
               ),
-              Row(
-                children: <Widget>[
-                  Image.network(image),
-                  Text(convertToAgo(ago)),
-                ],
+              ListTile(
+                subtitle: Text(convertToAgo(ago)),
+                title: Text(widget.description),
               )
             ],
           ),

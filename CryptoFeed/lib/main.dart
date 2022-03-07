@@ -72,8 +72,7 @@ class MyDrawer extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const LoginPage()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
           ),
@@ -89,6 +88,7 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext) {
@@ -111,6 +111,7 @@ class NewsPage extends StatefulWidget {
   @override
   State<NewsPage> createState() => _NewsPageState();
 }
+
 class _NewsPageState extends State<NewsPage> {
   static List<News> _news = [];
   int currentPage = 1;
@@ -155,7 +156,7 @@ class _NewsPageState extends State<NewsPage> {
         enablePullUp: true,
         onRefresh: () async {
           final result = await getNews(isRefresh: true);
-          if(result) {
+          if (result) {
             controller.refreshCompleted();
           } else {
             controller.refreshFailed();
@@ -163,7 +164,7 @@ class _NewsPageState extends State<NewsPage> {
         },
         onLoading: () async {
           final result = await getNews();
-          if(result) {
+          if (result) {
             controller.loadComplete();
           } else {
             controller.loadFailed();
@@ -177,14 +178,17 @@ class _NewsPageState extends State<NewsPage> {
             return ListTile(
               title: Text(news.title),
               subtitle: Text(news.source.name),
-              onTap: (){Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) {
-                  return OneNewsPage(news.source, news.url, news.urlToImage, news.title, news.publishedAt);
-                })
-              );},
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return OneNewsPage(news.source, news.url, news.urlToImage,
+                      news.title, news.publishedAt, news.content, news.description);
+                }));
+              },
             );
           },
-          separatorBuilder: (context, index) => const Divider(color: Colors.blue),
+          separatorBuilder: (context, index) =>
+              const Divider(color: Colors.blue),
           itemCount: _news.length,
         ),
       ),
@@ -211,34 +215,39 @@ class _NewsPageState extends State<NewsPage> {
     );
   }
 }
+
 class OneNewsPage extends StatefulWidget {
   final Source source;
   final String url;
   final String urlToImage;
   final String title;
   final String publishedAt;
+  final String content;
+  final String description;
 
-  OneNewsPage(this.source, this.url, this.urlToImage, this.title, this.publishedAt);
+  OneNewsPage(
+      this.source, this.url, this.urlToImage, this.title, this.publishedAt, this.content, this.description);
 
   @override
   State<OneNewsPage> createState() => _OneNewsPageState();
 }
+
 class _OneNewsPageState extends State<OneNewsPage> {
-  String convertToAgo(DateTime input){
+  String convertToAgo(DateTime input) {
     Duration diff = DateTime.now().difference(input);
-    if(diff.inDays >= 1){
+    if (diff.inDays >= 1) {
       return '${diff.inDays} days ago';
-    } else if(diff.inDays == 1){
+    } else if (diff.inDays == 1) {
       return 'a day ago';
-    } else if(diff.inHours >= 1){
+    } else if (diff.inHours >= 1) {
       return '${diff.inHours} hours ago';
-    } else if(diff.inHours == 1){
+    } else if (diff.inHours == 1) {
       return 'an hour ago';
-    } else if(diff.inMinutes >= 1){
+    } else if (diff.inMinutes >= 1) {
       return '${diff.inMinutes} minutes ago';
-    } else if(diff.inMinutes == 1){
+    } else if (diff.inMinutes == 1) {
       return 'a minute ago';
-    } else if (diff.inSeconds >= 1){
+    } else if (diff.inSeconds >= 1) {
       return '${diff.inSeconds} seconds ago';
     } else {
       return 'just now';
@@ -248,35 +257,34 @@ class _OneNewsPageState extends State<OneNewsPage> {
   @override
   Widget build(BuildContext context) {
     String image = widget.urlToImage;
-    //DateTime oneNewsDate = DateTime.parse(oneNewsPublishedAt);
+    DateTime ago = DateTime.parse(widget.publishedAt);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('MOCKUP DETAILLED NEWS'),
-        centerTitle: true,
-      ),
-      body:
-        Center(
-          child:
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                ListTile(
-                  title: Text(widget.title, style: const TextStyle(fontSize: 23), textAlign: TextAlign.justify,),
-                  subtitle: Text(widget.source.name),
-                  onTap: () => url.launch(widget.url, forceWebView: true),
+        appBar: AppBar(
+          title: const Text('MOCKUP DETAILLED NEWS'),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                title: Text(
+                  widget.title,
+                  style: const TextStyle(fontSize: 23),
+                  textAlign: TextAlign.justify,
                 ),
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      Image.network(image),
-                      Text(convertToAgo(widget.publishedAt)),
-                    ],
-                  ),
-                )
-              ],
-            )
-      ),
-    );
+                subtitle: Text(widget.source.name),
+                onTap: () => url.launch(widget.url, forceWebView: true),
+              ),
+              Row(
+                children: <Widget>[
+                  Image.network(image),
+                  Text(convertToAgo(ago)),
+                ],
+              )
+            ],
+          ),
+        )
+        );
   }
 }
 
@@ -286,30 +294,44 @@ class CryptoPage extends StatefulWidget {
   @override
   State<CryptoPage> createState() => _CryptoPageState();
 }
+
 class _CryptoPageState extends State<CryptoPage> {
   List<dynamic> _cryptos = [];
+
   List<DropdownMenuItem<String>> get listCurrencies {
     List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(child: Text('CHF'), value: 'chf',),
-      const DropdownMenuItem(child: Text('EUR'), value: 'eur',),
-      const DropdownMenuItem(child: Text('USD'), value: 'usd',),
+      const DropdownMenuItem(
+        child: Text('CHF'),
+        value: 'chf',
+      ),
+      const DropdownMenuItem(
+        child: Text('EUR'),
+        value: 'eur',
+      ),
+      const DropdownMenuItem(
+        child: Text('USD'),
+        value: 'usd',
+      ),
     ];
     return menuItems;
   }
 
   void getCryptos() async {
-    var result = await http.get(Uri.parse(
-        "https://api.coingecko.com/api/v3/coins"));
+    var result =
+        await http.get(Uri.parse("https://api.coingecko.com/api/v3/coins"));
     setState(() {
       _cryptos = json.decode(result.body);
     });
   }
+
   String holder = 'usd';
+
   void getDropDownItem() {
     setState(() {
       holder = selectedValue;
     });
   }
+
   Widget _buildCryptos() {
     String currency = holder.toUpperCase();
     return Scaffold(
@@ -328,7 +350,10 @@ class _CryptoPageState extends State<CryptoPage> {
                     backgroundColor: Colors.transparent,
                   ),
                   title: Text(_cryptos[index]['name']),
-                  subtitle: Text(_cryptos[index]['market_data']['current_price'][holder].toString()+" $currency"),
+                  subtitle: Text(_cryptos[index]['market_data']['current_price']
+                              [holder]
+                          .toString() +
+                      " $currency"),
                   trailing: const Icon(Icons.favorite),
                 )
               ],
@@ -346,6 +371,7 @@ class _CryptoPageState extends State<CryptoPage> {
   }
 
   String selectedValue = 'usd';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -380,6 +406,7 @@ class TransactionsPage extends StatefulWidget {
   @override
   State<TransactionsPage> createState() => _TransactionsPageState();
 }
+
 class _TransactionsPageState extends State<TransactionsPage> {
   @override
   Widget build(BuildContext) {
@@ -392,8 +419,8 @@ class _TransactionsPageState extends State<TransactionsPage> {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const HomePage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const HomePage()));
           },
           child: const Text('Return to home page'),
         ),
@@ -408,9 +435,11 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
+
 class _LoginPageState extends State<LoginPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -450,8 +479,7 @@ class _LoginPageState extends State<LoginPage> {
                   nameController.text = "";
                   passwordController.text = "";
                 },
-              )
-          ),
+              )),
         ],
       ),
     );

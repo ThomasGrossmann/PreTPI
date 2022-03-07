@@ -26,7 +26,7 @@ class News {
     required this.publishedAt,
     required this.urlToImage,
     required this.url,
-    //required this.content,
+    required this.content,
     required this.source,
   });
 
@@ -35,16 +35,16 @@ class News {
   String publishedAt;
   String urlToImage;
   String url;
-  //String content;
+  String content;
   Source source;
 
   factory News.fromJson(Map<String, dynamic> json) => News(
-    title: json['title'],
-    description: json['description'],
-    publishedAt: json['publishedAt'],
-    urlToImage: json['urlToImage'],
-    url: json['url'],
-    //content: json['content'],
+    title: json['title'].toString(),
+    description: json['description'].toString(),
+    publishedAt: json['publishedAt'].toString(),
+    urlToImage: json['urlToImage'].toString(),
+    url: json['url'].toString(),
+    content: json['content'].toString(),
     source: Source.fromJson(json['source']),
   );
 
@@ -54,7 +54,7 @@ class News {
     "publishedAt": publishedAt,
     "urlToImage": urlToImage,
     "url": url,
-    //"content": content,
+    "content": content,
     "source": source,
   };
 }

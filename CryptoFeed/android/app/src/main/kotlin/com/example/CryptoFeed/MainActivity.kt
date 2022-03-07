@@ -1,4 +1,4 @@
-package com.example.untitled2
+package com.example.CryptoFeed
 
 import io.flutter.embedding.android.FlutterActivity
 

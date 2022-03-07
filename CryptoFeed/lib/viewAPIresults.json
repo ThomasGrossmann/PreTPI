@@ -1,715 +1,136 @@
 {
-  "count": 200,
-  "next": "https:\/\/cryptopanic.com\/api\/v1\/posts\/?auth_token=ad15ecca83498d46e8e9e34dd2f18a2ba1320bc4&public=true&page=2",
-  "previous": null,
-  "results": [
+  "status": "ok",
+  "totalResults": 37,
+  "articles": [
     {
-      "kind": "news",
-      "domain": "protos.com",
       "source": {
-        "title": "Protos.com",
-        "region": "en",
-        "domain": "protos.com",
-        "path": null
+        "id": "the-wall-street-journal",
+        "name": "The Wall Street Journal"
       },
-      "title": "Disgruntled BlockFi users push class-action after record SEC settlement",
-      "published_at": "2022-03-02T19:58:45Z",
-      "slug": "Disgruntled-BlockFi-users-push-class-action-after-record-SEC-settlement",
-      "id": 14454129,
-      "url": "https:\/\/cryptopanic.com\/news\/14454129\/Disgruntled-BlockFi-users-push-class-action-after-record-SEC-settlement",
-      "created_at": "2022-03-02T19:58:45Z",
-      "votes": {
-        "negative": 0,
-        "positive": 0,
-        "important": 0,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      }
+      "author": "Brett Forrest",
+      "title": "Russia Pummels Ukrainian Civilian Targets Ahead of Talks - The Wall Street Journal",
+      "description": "Russian attacks face fierce Ukrainian resistance, as cease-fire talks are set to resume",
+      "url": "https://www.wsj.com/articles/russia-pummels-ukrainian-civilian-targets-ahead-of-talks-11646645852",
+      "urlToImage": "https://images.wsj.net/im-499318/social",
+      "publishedAt": "2022-03-07T12:26:00Z",
+      "content": "LVIV, UkraineRussia pursued a pressure campaign in its invasion of Ukraine with nighttime strikes on civilian targets as the war entered its 12th day, while Kyivs military held fast along several fro… [+326 chars]"
     },
     {
-      "kind": "news",
-      "domain": "blockworks.co",
       "source": {
-        "title": "Blockworks",
-        "region": "en",
-        "domain": "blockworks.co",
-        "path": null
+        "id": null,
+        "name": "CNBC"
       },
-      "title": "Crypto Company ConsenSys Under Fire From Shareholders Demanding Audit",
-      "published_at": "2022-03-02T19:51:59Z",
-      "slug": "Crypto-Company-ConsenSys-Under-Fire-From-Shareholders-Demanding-Audit",
-      "currencies": [
-        {
-          "code": "ETH",
-          "title": "Ethereum",
-          "slug": "ethereum",
-          "url": "https:\/\/cryptopanic.com\/news\/ethereum\/"
-        }
-      ],
-      "id": 14454117,
-      "url": "https:\/\/cryptopanic.com\/news\/14454117\/Crypto-Company-ConsenSys-Under-Fire-From-Shareholders-Demanding-Audit",
-      "created_at": "2022-03-02T19:51:59Z",
-      "votes": {
-        "negative": 0,
-        "positive": 0,
-        "important": 0,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      }
+      "author": "Sam Meredith, Chloe Taylor, Ted Kemp, Abigail Ng",
+      "title": "Ukraine says Moscow seeking to 'manipulate' cease-fire agreement; oil prices soar to 13-year highs - CNBC",
+      "description": "Ukraine says Moscow is seeking to manipulate its cease-fire arrangement by only allowing Ukrainian civilians to evacuate to Russia and Belarus.",
+      "url": "https://www.cnbc.com/2022/03/07/possible-russian-energy-ban-sends-oil-soaring-poland-us-in-jet-talks.html",
+      "urlToImage": "https://image.cnbcfm.com/api/v1/image/107026034-1646634891584-gettyimages-1238974618-AFP_324K9AR.jpeg?v=1646634696",
+      "publishedAt": "2022-03-07T12:11:00Z",
+      "content": "Moscow is seeking to \"manipulate\" its cease-fire arrangement by only allowing Ukrainian civilians to evacuate to Russia and Belarus, a Ukrainian official has said.\r\nSpeaking at a press briefing in Ky… [+1963 chars]"
     },
     {
-      "kind": "news",
-      "domain": "beincrypto.com",
-      "votes": {
-        "negative": 0,
-        "positive": 1,
-        "important": 1,
-        "liked": 1,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      },
       "source": {
-        "title": "BeInCrypto",
-        "region": "en",
-        "domain": "beincrypto.com",
-        "path": null
+        "id": null,
+        "name": "CNBC"
       },
-      "title": "Waves (WAVES) Increases by 140% in Only Eight Days",
-      "published_at": "2022-03-02T19:45:00Z",
-      "slug": "Waves-WAVES-Increases-by-140-in-Only-Eight-Days",
-      "id": 14454103,
-      "url": "https:\/\/cryptopanic.com\/news\/14454103\/Waves-WAVES-Increases-by-140-in-Only-Eight-Days",
-      "created_at": "2022-03-02T19:45:00Z"
+      "author": "Lauren Thomas",
+      "title": "Bed Bath & Beyond shares surge 65% after GameStop chairman reveals big stake, pushes turnaround - CNBC",
+      "description": "Bed Bath & Beyond surged after GameStop Chairman Ryan Cohen revealed he had a nearly 10% stake in the retailer, through his investment company RC Ventures.",
+      "url": "https://www.cnbc.com/2022/03/07/bed-bath-beyond-shares-surge-after-gamestop-chairman-reveals-big-stake.html",
+      "urlToImage": "https://image.cnbcfm.com/api/v1/image/106973593-1636570042341-gettyimages-166230604-74127580.jpeg?v=1636732646",
+      "publishedAt": "2022-03-07T12:00:05Z",
+      "content": "Bed Bath &amp; Beyond surged more than 65% in premarket trading Monday after GameStop Chairman Ryan Cohen revealed he had a nearly 10% stake in the retailer, through his investment company RC Venture… [+2229 chars]"
     },
     {
-      "kind": "media",
-      "domain": "youtube.com",
-      "votes": {
-        "negative": 0,
-        "positive": 1,
-        "important": 1,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      },
       "source": {
-        "title": "Ian Balina",
-        "region": "en",
-        "domain": "youtube.com",
-        "path": null
+        "id": null,
+        "name": "New York Times"
       },
-      "title": "Altcoins to Watch on a Dip! Who will take the lead? | Market Update Live",
-      "published_at": "2022-03-02T19:29:15Z",
-      "slug": "Altcoins-to-Watch-on-a-Dip-Who-will-take-the-lead-Market-Update-Live",
-      "id": 14453844,
-      "url": "https:\/\/cryptopanic.com\/news\/14453844\/Altcoins-to-Watch-on-a-Dip-Who-will-take-the-lead-Market-Update-Live",
-      "created_at": "2022-03-02T19:29:15Z"
+      "author": "Madeleine Ngo, Adam Bednar, Esha Ray",
+      "title": "Trucker Convoy Protesting Covid Mandates Slows Traffic Around Washington - The New York Times",
+      "description": "The convoy slowed traffic outside the capital for hours before fading in the afternoon.",
+      "url": "https://www.nytimes.com/2022/03/06/us/trucker-convoy-dc-beltway.html",
+      "urlToImage": "https://static01.nyt.com/images/2022/03/05/multimedia/05virus-briefing-convoy/05virus-briefing-convoy-facebookJumbo.jpg",
+      "publishedAt": "2022-03-07T11:52:00Z",
+      "content": "Although the Peoples Convoy was one of several groups inspired by the Canadian protests against pandemic measures that disrupted the capital of Ottawa for three weeks, many in the group appeared to b… [+2051 chars]"
     },
     {
-      "kind": "news",
-      "domain": "cointelegraph.com",
-      "votes": {
-        "negative": 0,
-        "positive": 1,
-        "important": 0,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      },
       "source": {
-        "title": "CoinTelegraph",
-        "region": "en",
-        "domain": "cointelegraph.com",
-        "path": null
+        "id": "the-verge",
+        "name": "The Verge"
       },
-      "title": "Price analysis 3\/2: BTC, ETH, BNB, XRP, LUNA, SOL, ADA, AVAX, DOT, DOGE",
-      "published_at": "2022-03-02T19:26:50Z",
-      "slug": "Price-analysis-32-BTC-ETH-BNB-XRP-LUNA-SOL-ADA-AVAX-DOT-DOGE",
-      "currencies": [
-        {
-          "code": "BTC",
-          "title": "Bitcoin",
-          "slug": "bitcoin",
-          "url": "https:\/\/cryptopanic.com\/news\/bitcoin\/"
-        },
-        {
-          "code": "ETH",
-          "title": "Ethereum",
-          "slug": "ethereum",
-          "url": "https:\/\/cryptopanic.com\/news\/ethereum\/"
-        },
-        {
-          "code": "XRP",
-          "title": "XRP",
-          "slug": "ripple",
-          "url": "https:\/\/cryptopanic.com\/news\/ripple\/"
-        },
-        {
-          "code": "LUNA",
-          "title": "Terra",
-          "slug": "terra-luna",
-          "url": "https:\/\/cryptopanic.com\/news\/terra-luna\/"
-        },
-        {
-          "code": "ADA",
-          "title": "Cardano",
-          "slug": "cardano",
-          "url": "https:\/\/cryptopanic.com\/news\/cardano\/"
-        },
-        {
-          "code": "AVAX",
-          "title": "Avalanche",
-          "slug": "avalanche-2",
-          "url": "https:\/\/cryptopanic.com\/news\/avalanche-2\/"
-        },
-        {
-          "code": "DOT",
-          "title": "Polkadot",
-          "slug": "polkadot",
-          "url": "https:\/\/cryptopanic.com\/news\/polkadot\/"
-        },
-        {
-          "code": "DOGE",
-          "title": "Dogecoin",
-          "slug": "dogecoin",
-          "url": "https:\/\/cryptopanic.com\/news\/dogecoin\/"
-        },
-        {
-          "code": "BNB",
-          "title": "OEC Binance Coin",
-          "slug": "oec-binance-coin",
-          "url": "https:\/\/cryptopanic.com\/news\/oec-binance-coin\/"
-        },
-        {
-          "code": "FLOW",
-          "title": "Flower Solana",
-          "slug": "flower-solana",
-          "url": "https:\/\/cryptopanic.com\/news\/flower-solana\/"
-        }
-      ],
-      "id": 14454075,
-      "url": "https:\/\/cryptopanic.com\/news\/14454075\/Price-analysis-32-BTC-ETH-BNB-XRP-LUNA-SOL-ADA-AVAX-DOT-DOGE",
-      "created_at": "2022-03-02T19:26:50Z"
+      "author": "James Vincent",
+      "title": "Samsung confirms hackers stole Galaxy source code - The Verge",
+      "description": "Samsung has confirmed that hackers breached the company’s internal systems, stealing data including source for Galaxy devices. The hacking group Lapsus$ has claimed responsibility, but Samsung has not confirmed its involvement.",
+      "url": "https://www.theverge.com/2022/3/7/22965220/samsung-hack-lapsus-galaxy-source-code-confirmed-nvidia",
+      "urlToImage": "https://cdn.vox-cdn.com/thumbor/iljP-g85UP4DsoQSQ9ljBRyuyUU=/0x146:2040x1214/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/23256275/ajohnson_220216_5032_0004.jpg",
+      "publishedAt": "2022-03-07T11:18:30Z",
+      "content": "The same group behind a recent Nvidia hack has claimed responsibility\r\nPhoto by Allison Johnson / The Verge\r\nHackers have successfully stolen internal company data and source code for Galaxy devices … [+1614 chars]"
     },
     {
-      "kind": "news",
-      "domain": "cointelegraph.com",
-      "votes": {
-        "negative": 0,
-        "positive": 1,
-        "important": 0,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      },
       "source": {
-        "title": "CoinTelegraph",
-        "region": "en",
-        "domain": "cointelegraph.com",
-        "path": null
+        "id": null,
+        "name": "Nintendo Life"
       },
-      "title": "Radio Caca wants to \u2018return the Metaverse to people\u2019 by partnering with university students",
-      "published_at": "2022-03-02T19:26:00Z",
-      "slug": "Radio-Caca-wants-to-return-the-Metaverse-to-people-by-partnering-with-university-students",
-      "id": 14454076,
-      "url": "https:\/\/cryptopanic.com\/news\/14454076\/Radio-Caca-wants-to-return-the-Metaverse-to-people-by-partnering-with-university-students",
-      "created_at": "2022-03-02T19:26:00Z"
+      "author": "Alana Hagues",
+      "title": "Nintendo Switch Online App Version 2.0.0 Includes Biggest Updates Yet - Nintendo Life",
+      "description": "A new lick of paint and more!",
+      "url": "https://www.nintendolife.com/news/2022/03/nintendo-switch-online-app-version-2-0-0-includes-biggest-updates-yet",
+      "urlToImage": "https://images.nintendolife.com/1fe65979b518d/1280x720.jpg",
+      "publishedAt": "2022-03-07T11:00:00Z",
+      "content": "Image: Nintendo\r\nThe Nintendo Switch Online App has been updated to version 2.0.0 this morning, bringing with it a whole slew of changes that are absolutely for the best.\r\nThis is the biggest overhau… [+1083 chars]"
     },
     {
-      "kind": "media",
-      "domain": "youtube.com",
       "source": {
-        "title": "Bitcoin Magazine",
-        "region": "en",
-        "domain": "youtube.com",
-        "path": null
+        "id": null,
+        "name": "WCVB Boston"
       },
-      "title": "Bitcoin vs Tyranny - Who Will Win?",
-      "published_at": "2022-03-02T19:20:17Z",
-      "slug": "Bitcoin-vs-Tyranny-Who-Will-Win",
-      "currencies": [
-        {
-          "code": "BTC",
-          "title": "Bitcoin",
-          "slug": "bitcoin",
-          "url": "https:\/\/cryptopanic.com\/news\/bitcoin\/"
-        }
-      ],
-      "id": 14454104,
-      "url": "https:\/\/cryptopanic.com\/news\/14454104\/Bitcoin-vs-Tyranny-Who-Will-Win",
-      "created_at": "2022-03-02T19:20:17Z",
-      "votes": {
-        "negative": 0,
-        "positive": 0,
-        "important": 0,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      }
+      "author": "Josh Brogadir",
+      "title": "Average price of gas in Massachusetts rises above $4 per gallon, according to AAA - WCVB Boston",
+      "description": "NewsCenter 5 has found prices for regular gasoline as high as $4.29 per gallon at some stations.",
+      "url": "https://www.wcvb.com/article/higher-gas-prices-massachusetts-march-6-2022/39342144",
+      "urlToImage": "https://kubrick.htvapps.com/htv-prod-media.s3.amazonaws.com/images/high-gas-prices-in-massachusetts-march-2022-1646593545.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*",
+      "publishedAt": "2022-03-07T10:30:00Z",
+      "content": "BOSTON —The average price of regular gasoline in Massachusetts has risen above $4 per gallon for the first time since the Great Recession, according to AAA.\r\nAAA said the average price for gas in the… [+1120 chars]"
     },
     {
-      "kind": "news",
-      "domain": "coindesk.com",
-      "votes": {
-        "negative": 1,
-        "positive": 0,
-        "important": 0,
-        "liked": 0,
-        "disliked": 1,
-        "lol": 1,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      },
       "source": {
-        "title": "CoinDesk",
-        "region": "en",
-        "domain": "coindesk.com",
-        "path": null
+        "id": "cnn",
+        "name": "CNN"
       },
-      "title": "Polymer\u2019s $3.6M in Seed Funding Says IBC Is the Future of Crypto",
-      "published_at": "2022-03-02T19:11:51Z",
-      "slug": "Polymers-36M-in-Seed-Funding-Says-IBC-Is-the-Future-of-Crypto",
-      "currencies": [
-        {
-          "code": "ETH",
-          "title": "Ethereum",
-          "slug": "ethereum",
-          "url": "https:\/\/cryptopanic.com\/news\/ethereum\/"
-        },
-        {
-          "code": "SOL",
-          "title": "Solana",
-          "slug": "solana",
-          "url": "https:\/\/cryptopanic.com\/news\/solana\/"
-        }
-      ],
-      "id": 14454023,
-      "url": "https:\/\/cryptopanic.com\/news\/14454023\/Polymers-36M-in-Seed-Funding-Says-IBC-Is-the-Future-of-Crypto",
-      "created_at": "2022-03-02T19:11:51Z"
+      "author": "Raja Razek and Travis Caldwell, CNN",
+      "title": "Thousands of acres near Panama City are torched as Florida Panhandle wildfires continue - CNN",
+      "description": "With nearly 1,100 homes evacuated, firefighting crews continue to battle several dangerous wildfires across three counties in the Florida Panhandle, officials said.",
+      "url": "https://www.cnn.com/2022/03/07/us/florida-panhandle-wildfire-monday/index.html",
+      "urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/220307014157-florida-wildfire-aftermath-03052022-super-tease.jpg",
+      "publishedAt": "2022-03-07T10:16:00Z",
+      "content": "(CNN)With nearly 1,100 homes evacuated, firefighting crews continue to battle several dangerous wildfires across three counties in the Florida Panhandle, officials said. \r\nThe most prominent blaze, t… [+3867 chars]"
     },
     {
-      "kind": "news",
-      "domain": "coindesk.com",
-      "votes": {
-        "negative": 0,
-        "positive": 1,
-        "important": 1,
-        "liked": 1,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 1,
-        "comments": 0
-      },
       "source": {
-        "title": "CoinDesk",
-        "region": "en",
-        "domain": "coindesk.com",
-        "path": null
+        "id": "reuters",
+        "name": "Reuters"
       },
-      "title": "Bitcoiners Were Right: Weaponized Finance Just Created a Post-Dollar Planet",
-      "published_at": "2022-03-02T19:10:01Z",
-      "slug": "Bitcoiners-Were-Right-Weaponized-Finance-Just-Created-a-Post-Dollar-Planet",
-      "id": 14454024,
-      "url": "https:\/\/cryptopanic.com\/news\/14454024\/Bitcoiners-Were-Right-Weaponized-Finance-Just-Created-a-Post-Dollar-Planet",
-      "created_at": "2022-03-02T19:10:01Z"
+      "author": null,
+      "title": "Cricket Autopsy shows Australian Warne died of natural causes - Thai police - Reuters.com",
+      "description": "An autopsy showed the death last week of Australian cricket great Shane Warne on an island in Thailand was due to natural causes, the Thai police said on Monday.",
+      "url": "https://www.reuters.com/lifestyle/sports/cricket-autopsy-showed-australian-warnes-death-due-natural-causes-thai-police-2022-03-07/",
+      "urlToImage": "https://www.reuters.com/resizer/hkTmUUzI5sgCNrZzFWNN6HA-PIs=/1200x628/smart/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/TUPU7H7GTJN25BWUXJS3UA7AHE.jpg",
+      "publishedAt": "2022-03-07T10:14:00Z",
+      "content": "KOH SAMUI, Thailand, March 7 (Reuters) - An autopsy showed the death last week of Australian cricket great Shane Warne on an island in Thailand was due to natural causes, the Thai police said on Mond… [+2819 chars]"
     },
     {
-      "kind": "media",
-      "domain": "youtube.com",
       "source": {
-        "title": "Bitcoin Magazine",
-        "region": "en",
-        "domain": "youtube.com",
-        "path": null
+        "id": "cnn",
+        "name": "CNN"
       },
-      "title": "Drunk People React To Bitcoin - Street Interviews!",
-      "published_at": "2022-03-02T19:05:54Z",
-      "slug": "Drunk-People-React-To-Bitcoin-Street-Interviews",
-      "currencies": [
-        {
-          "code": "BTC",
-          "title": "Bitcoin",
-          "slug": "bitcoin",
-          "url": "https:\/\/cryptopanic.com\/news\/bitcoin\/"
-        }
-      ],
-      "id": 14453991,
-      "url": "https:\/\/cryptopanic.com\/news\/14453991\/Drunk-People-React-To-Bitcoin-Street-Interviews",
-      "created_at": "2022-03-02T19:05:54Z",
-      "votes": {
-        "negative": 0,
-        "positive": 0,
-        "important": 0,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      }
-    },
-    {
-      "kind": "news",
-      "domain": "dailyhodl.com",
-      "votes": {
-        "negative": 0,
-        "positive": 1,
-        "important": 1,
-        "liked": 1,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 1,
-        "comments": 0
-      },
-      "source": {
-        "title": "The Daily Hodl",
-        "region": "en",
-        "domain": "dailyhodl.com",
-        "path": null
-      },
-      "title": "Analyst Predicts Rallies for Terra (LUNA) and Two Altcoins, Warns Not To Expect Many Bitcoin Dips This Month",
-      "published_at": "2022-03-02T19:05:23Z",
-      "slug": "Analyst-Predicts-Rallies-for-Terra-LUNA-and-Two-Altcoins-Warns-Not-To-Expect-Many-Bitcoin-Dips-This-Month",
-      "currencies": [
-        {
-          "code": "BTC",
-          "title": "Bitcoin",
-          "slug": "bitcoin",
-          "url": "https:\/\/cryptopanic.com\/news\/bitcoin\/"
-        },
-        {
-          "code": "LUNA",
-          "title": "Terra",
-          "slug": "luna-terra",
-          "url": "https:\/\/cryptopanic.com\/news\/luna-terra\/"
-        },
-        {
-          "code": "LUNA",
-          "title": "Terra",
-          "slug": "terra-luna",
-          "url": "https:\/\/cryptopanic.com\/news\/terra-luna\/"
-        }
-      ],
-      "id": 14454029,
-      "url": "https:\/\/cryptopanic.com\/news\/14454029\/Analyst-Predicts-Rallies-for-Terra-LUNA-and-Two-Altcoins-Warns-Not-To-Expect-Many-Bitcoin-Dips-This-Month",
-      "created_at": "2022-03-02T19:05:23Z"
-    },
-    {
-      "kind": "news",
-      "domain": "coindesk.com",
-      "votes": {
-        "negative": 1,
-        "positive": 0,
-        "important": 1,
-        "liked": 0,
-        "disliked": 1,
-        "lol": 1,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      },
-      "source": {
-        "title": "CoinDesk",
-        "region": "en",
-        "domain": "coindesk.com",
-        "path": null
-      },
-      "title": "Lawmakers Raise Alarm on Crypto for Sanctions Evasion as Experts Cast Doubt",
-      "published_at": "2022-03-02T19:01:13Z",
-      "slug": "Lawmakers-Raise-Alarm-on-Crypto-for-Sanctions-Evasion-as-Experts-Cast-Doubt",
-      "id": 14453993,
-      "url": "https:\/\/cryptopanic.com\/news\/14453993\/Lawmakers-Raise-Alarm-on-Crypto-for-Sanctions-Evasion-as-Experts-Cast-Doubt",
-      "created_at": "2022-03-02T19:01:13Z"
-    },
-    {
-      "kind": "media",
-      "domain": "youtube.com",
-      "votes": {
-        "negative": 0,
-        "positive": 0,
-        "important": 0,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 2
-      },
-      "source": {
-        "title": "Bitcoin Magazine",
-        "region": "en",
-        "domain": "youtube.com",
-        "path": null
-      },
-      "title": "Watch This To UNDERSTAND Bitcoin & Energy",
-      "published_at": "2022-03-02T19:00:57Z",
-      "slug": "Watch-This-To-UNDERSTAND-Bitcoin-Energy",
-      "currencies": [
-        {
-          "code": "BTC",
-          "title": "Bitcoin",
-          "slug": "bitcoin",
-          "url": "https:\/\/cryptopanic.com\/news\/bitcoin\/"
-        }
-      ],
-      "id": 14453216,
-      "url": "https:\/\/cryptopanic.com\/news\/14453216\/Watch-This-To-UNDERSTAND-Bitcoin-Energy",
-      "created_at": "2022-03-02T19:00:57Z"
-    },
-    {
-      "kind": "news",
-      "domain": "bitcoinist.com",
-      "source": {
-        "title": "Bitcoinist",
-        "region": "en",
-        "domain": "bitcoinist.com",
-        "path": null
-      },
-      "title": "War Driven Bitcoin Price Action Leads To Largest Volume Since 2021",
-      "published_at": "2022-03-02T19:00:56Z",
-      "slug": "War-Driven-Bitcoin-Price-Action-Leads-To-Largest-Volume-Since-2021",
-      "currencies": [
-        {
-          "code": "BTC",
-          "title": "Bitcoin",
-          "slug": "bitcoin",
-          "url": "https:\/\/cryptopanic.com\/news\/bitcoin\/"
-        }
-      ],
-      "id": 14453992,
-      "url": "https:\/\/cryptopanic.com\/news\/14453992\/War-Driven-Bitcoin-Price-Action-Leads-To-Largest-Volume-Since-2021",
-      "created_at": "2022-03-02T19:00:56Z",
-      "votes": {
-        "negative": 0,
-        "positive": 0,
-        "important": 0,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      }
-    },
-    {
-      "kind": "news",
-      "domain": "cryptoslate.com",
-      "votes": {
-        "negative": 0,
-        "positive": 1,
-        "important": 1,
-        "liked": 1,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 1,
-        "comments": 0
-      },
-      "source": {
-        "title": "CryptoSlate",
-        "region": "en",
-        "domain": "cryptoslate.com",
-        "path": null
-      },
-      "title": "DeVere Group predicts Bitcoin will reach $50k before month end",
-      "published_at": "2022-03-02T19:00:50Z",
-      "slug": "DeVere-Group-predicts-Bitcoin-will-reach-50k-before-month-end",
-      "currencies": [
-        {
-          "code": "BTC",
-          "title": "Bitcoin",
-          "slug": "bitcoin",
-          "url": "https:\/\/cryptopanic.com\/news\/bitcoin\/"
-        }
-      ],
-      "id": 14453996,
-      "url": "https:\/\/cryptopanic.com\/news\/14453996\/DeVere-Group-predicts-Bitcoin-will-reach-50k-before-month-end",
-      "created_at": "2022-03-02T19:00:50Z"
-    },
-    {
-      "kind": "media",
-      "domain": "youtube.com",
-      "votes": {
-        "negative": 0,
-        "positive": 2,
-        "important": 1,
-        "liked": 1,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 1
-      },
-      "source": {
-        "title": "Bitcoin Magazine",
-        "region": "en",
-        "domain": "youtube.com",
-        "path": null
-      },
-      "title": "Russia-Ukraine War Causes Bitcoin To Rally",
-      "published_at": "2022-03-02T19:00:12Z",
-      "slug": "Russia-Ukraine-War-Causes-Bitcoin-To-Rally",
-      "currencies": [
-        {
-          "code": "BTC",
-          "title": "Bitcoin",
-          "slug": "bitcoin",
-          "url": "https:\/\/cryptopanic.com\/news\/bitcoin\/"
-        }
-      ],
-      "id": 14453937,
-      "url": "https:\/\/cryptopanic.com\/news\/14453937\/Russia-Ukraine-War-Causes-Bitcoin-To-Rally",
-      "created_at": "2022-03-02T19:00:12Z"
-    },
-    {
-      "kind": "media",
-      "domain": "youtube.com",
-      "source": {
-        "title": "Bitcoin Magazine",
-        "region": "en",
-        "domain": "youtube.com",
-        "path": null
-      },
-      "title": "Macro Deep Dive ft Dylan LeClair - FED 84",
-      "published_at": "2022-03-02T19:00:08Z",
-      "slug": "Macro-Deep-Dive-ft-Dylan-LeClair-FED-84",
-      "id": 14453938,
-      "url": "https:\/\/cryptopanic.com\/news\/14453938\/Macro-Deep-Dive-ft-Dylan-LeClair-FED-84",
-      "created_at": "2022-03-02T19:00:08Z",
-      "votes": {
-        "negative": 0,
-        "positive": 0,
-        "important": 0,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      }
-    },
-    {
-      "kind": "news",
-      "domain": "beincrypto.com",
-      "source": {
-        "title": "BeInCrypto",
-        "region": "en",
-        "domain": "beincrypto.com",
-        "path": null
-      },
-      "title": "UK Advertising Authority Bans Floki Inu (FLOKI) Adverts",
-      "published_at": "2022-03-02T19:00:00Z",
-      "slug": "UK-Advertising-Authority-Bans-Floki-Inu-FLOKI-Adverts",
-      "id": 14454022,
-      "url": "https:\/\/cryptopanic.com\/news\/14454022\/UK-Advertising-Authority-Bans-Floki-Inu-FLOKI-Adverts",
-      "created_at": "2022-03-02T19:00:00Z",
-      "votes": {
-        "negative": 0,
-        "positive": 0,
-        "important": 0,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      }
-    },
-    {
-      "kind": "news",
-      "domain": "forbes.com",
-      "source": {
-        "title": "Forbes",
-        "region": "en",
-        "domain": "forbes.com",
-        "path": null
-      },
-      "title": "Bitcoin Earns Its Stripes In The War In Ukraine",
-      "published_at": "2022-03-02T18:55:34Z",
-      "slug": "Bitcoin-Earns-Its-Stripes-In-The-War-In-Ukraine",
-      "currencies": [
-        {
-          "code": "BTC",
-          "title": "Bitcoin",
-          "slug": "bitcoin",
-          "url": "https:\/\/cryptopanic.com\/news\/bitcoin\/"
-        }
-      ],
-      "id": 14453950,
-      "url": "https:\/\/cryptopanic.com\/news\/14453950\/Bitcoin-Earns-Its-Stripes-In-The-War-In-Ukraine",
-      "created_at": "2022-03-02T18:55:34Z",
-      "votes": {
-        "negative": 0,
-        "positive": 0,
-        "important": 0,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      }
-    },
-    {
-      "kind": "news",
-      "domain": "coindesk.com",
-      "votes": {
-        "negative": 1,
-        "positive": 0,
-        "important": 0,
-        "liked": 0,
-        "disliked": 0,
-        "lol": 0,
-        "toxic": 0,
-        "saved": 0,
-        "comments": 0
-      },
-      "source": {
-        "title": "CoinDesk",
-        "region": "en",
-        "domain": "coindesk.com",
-        "path": null
-      },
-      "title": "Bitcoin Fades From Resistance; Support at $40K",
-      "published_at": "2022-03-02T18:53:33Z",
-      "slug": "Bitcoin-Fades-From-Resistance-Support-at-40K",
-      "currencies": [
-        {
-          "code": "BTC",
-          "title": "Bitcoin",
-          "slug": "bitcoin",
-          "url": "https:\/\/cryptopanic.com\/news\/bitcoin\/"
-        }
-      ],
-      "id": 14453939,
-      "url": "https:\/\/cryptopanic.com\/news\/14453939\/Bitcoin-Fades-From-Resistance-Support-at-40K",
-      "created_at": "2022-03-02T18:53:33Z"
+      "author": "Laura He, CNN Business",
+      "title": "Stocks sink and oil prices soar as US and allies consider Russian import ban - CNN",
+      "description": "Stocks are tumbling on Monday as oil prices soared above $120 barrel to their highest level in 13 years, raising fears about an inflationary shock to the global economy.",
+      "url": "https://www.cnn.com/2022/03/06/investing/global-markets-oil-highest-2008/index.html",
+      "urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/220306210754-japan-stock-market-03072022-super-tease.jpg",
+      "publishedAt": "2022-03-07T10:07:00Z",
+      "content": null
     }
   ]
 }

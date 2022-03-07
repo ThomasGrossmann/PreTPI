@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart' as url;
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'data_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -110,53 +112,83 @@ class NewsPage extends StatefulWidget {
   State<NewsPage> createState() => _NewsPageState();
 }
 class _NewsPageState extends State<NewsPage> {
-  List<dynamic> _news = [];
+  static List<News> _news = [];
   int currentPage = 1;
+  int totalPages = 4;
 
-  late ScrollController controller;
+  RefreshController controller = RefreshController(initialRefresh: true);
 
-  void getNews() async {
-    var result = await http.get(Uri.parse(
-        "https://cryptopanic.com/api/v1/posts/?auth_token=ad15ecca83498d46e8e9e34dd2f18a2ba1320bc4&public=true&page=$currentPage"));
-    setState(() {
-      _news = json.decode(result.body)['results'];
-    });
-    currentPage++;
+  Future<bool> getNews({bool isRefresh = false}) async {
+    if (isRefresh) {
+      currentPage = 1;
+    } else {
+      if (currentPage >= totalPages) {
+        controller.loadNoData();
+        return false;
+      }
+    }
+    final response = await http.get(Uri.parse(
+        "https://newsapi.org/v2/top-headlines?country=us&apiKey=e05f822b086d44e7886db0ebbe4d54f6&page=$currentPage&pageSize=10"));
+
+    if (response.statusCode == 200) {
+      final result = NewsDataFromJson(response.body);
+
+      if (isRefresh) {
+        _news = result.articles;
+      } else {
+        _news.addAll(result.articles);
+      }
+
+      currentPage++;
+
+      setState(() {});
+      return true;
+    } else {
+      return false;
+    }
   }
-
 
   Widget _buildNews() {
-    return _news.isNotEmpty
-        ? RefreshIndicator(
-      child: ListView.separated(
+    return Scaffold(
+      body: SmartRefresher(
         controller: controller,
-        padding: const EdgeInsets.all(8),
-        itemCount: _news.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Card(
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                  title: Text(_news[index]['title']),
-                  subtitle: Text(_news[index]['domain']),
-                  onTap: (){Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => const OneNewsPage()));},
-                )
-              ],
-            ),
-          );
-        }, separatorBuilder: (BuildContext context, int index) => const Divider(),
-      ),
-      onRefresh: _getValues,
-    )
-        : const Center(child: CircularProgressIndicator());
-  }
+        enablePullUp: true,
+        onRefresh: () async {
+          final result = await getNews(isRefresh: true);
+          if(result) {
+            controller.refreshCompleted();
+          } else {
+            controller.refreshFailed();
+          }
+        },
+        onLoading: () async {
+          final result = await getNews();
+          if(result) {
+            controller.loadComplete();
+          } else {
+            controller.loadFailed();
+          }
+          LoadStyle.ShowWhenLoading;
+        },
+        child: ListView.separated(
+          itemBuilder: (context, index) {
+            final news = _news[index];
 
-  Future<void> _getValues() async {
-    setState(() {
-      getNews();
-      currentPage = 1;
-    });
+            return ListTile(
+              title: Text(news.title),
+              subtitle: Text(news.source.name),
+              onTap: (){Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) {
+                  return OneNewsPage(news.source, news.url, news.urlToImage, news.title, news.publishedAt);
+                })
+              );},
+            );
+          },
+          separatorBuilder: (context, index) => const Divider(color: Colors.blue),
+          itemCount: _news.length,
+        ),
+      ),
+    );
   }
 
   @override
@@ -180,22 +212,18 @@ class _NewsPageState extends State<NewsPage> {
   }
 }
 class OneNewsPage extends StatefulWidget {
-  const OneNewsPage({Key? key}) : super(key: key);
+  final Source source;
+  final String url;
+  final String urlToImage;
+  final String title;
+  final String publishedAt;
+
+  OneNewsPage(this.source, this.url, this.urlToImage, this.title, this.publishedAt);
 
   @override
   State<OneNewsPage> createState() => _OneNewsPageState();
 }
 class _OneNewsPageState extends State<OneNewsPage> {
-  // Testing purposes, hard values will be replaced with dynamic API values
-  String oneNewsDomain = 'protos.com';
-  String oneNewsTitle = 'Disgruntled BlockFi users push class-action after record SEC settlement';
-  String oneNewsPublishedAt = '2022-03-02T19:58:45Z';
-  String oneNewsId = '14454129';
-  String oneNewsPositiveVotes = '0';
-  String oneNewsNegativeVotes = '0';
-  String oneNewsImportantVotes = '0';
-  //
-
   String convertToAgo(DateTime input){
     Duration diff = DateTime.now().difference(input);
     if(diff.inDays >= 1){
@@ -219,20 +247,34 @@ class _OneNewsPageState extends State<OneNewsPage> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime oneNewsDate = DateTime.parse(oneNewsPublishedAt);
+    String image = widget.urlToImage;
+    //DateTime oneNewsDate = DateTime.parse(oneNewsPublishedAt);
     return Scaffold(
       appBar: AppBar(
         title: const Text('MOCKUP DETAILLED NEWS'),
         centerTitle: true,
       ),
-      body: Column(
-        children: <Widget> [
-          InkWell(
-            child: Text(oneNewsTitle),
-            onTap: () => url.launch('https://cryptopanic.com/news/$oneNewsId/click/', enableJavaScript: true),
-          ),
-          Text(convertToAgo(oneNewsDate)),
-        ],
+      body:
+        Center(
+          child:
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                ListTile(
+                  title: Text(widget.title, style: const TextStyle(fontSize: 23), textAlign: TextAlign.justify,),
+                  subtitle: Text(widget.source.name),
+                  onTap: () => url.launch(widget.url, forceWebView: true),
+                ),
+                Container(
+                  child: Row(
+                    children: <Widget>[
+                      Image.network(image),
+                      Text(convertToAgo(widget.publishedAt)),
+                    ],
+                  ),
+                )
+              ],
+            )
       ),
     );
   }
@@ -270,9 +312,8 @@ class _CryptoPageState extends State<CryptoPage> {
   }
   Widget _buildCryptos() {
     String currency = holder.toUpperCase();
-    return _cryptos.isNotEmpty
-        ? RefreshIndicator(
-      child: ListView.builder(
+    return Scaffold(
+      body: ListView.builder(
         padding: const EdgeInsets.all(8),
         itemCount: _cryptos.length,
         itemBuilder: (BuildContext context, int index) {
@@ -295,15 +336,7 @@ class _CryptoPageState extends State<CryptoPage> {
           );
         },
       ),
-      onRefresh: _getCryptos,
-    )
-        : const Center(child: CircularProgressIndicator());
-  }
-
-  Future<void> _getCryptos() async {
-    setState(() {
-      getCryptos();
-    });
+    );
   }
 
   @override

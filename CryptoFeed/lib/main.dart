@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart' as url;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'data_model.dart';
+import 'data/news_data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +40,7 @@ class MyDrawer extends StatelessWidget {
             child: Text('Menu'),
           ),
           ListTile(
-            title: const Text('News en direct'),
+            title: const Text('News Feed'),
             onTap: () {
               Navigator.push(
                 context,
@@ -49,7 +49,7 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('Cryptomonnaies'),
+            title: const Text('Cryptocurrencies'),
             onTap: () {
               Navigator.push(
                 context,
@@ -58,7 +58,7 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('Mes transactions'),
+            title: const Text('My transactions'),
             onTap: () {
               Navigator.push(
                 context,
@@ -68,6 +68,15 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage())
+                );
+              }
+          )
+          /*ListTile(
             title: const Text('Login'),
             onTap: () {
               Navigator.push(
@@ -75,7 +84,7 @@ class MyDrawer extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
-          ),
+          ),*/
         ],
       ),
     );
@@ -88,7 +97,6 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
-
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext) {
@@ -99,7 +107,7 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: const MyDrawer(),
       body: const Center(
-        child: Text('Hello'),
+        child: Text('This is the emptiness... But nor for long'),
       ),
     );
   }
@@ -111,7 +119,6 @@ class NewsPage extends StatefulWidget {
   @override
   State<NewsPage> createState() => _NewsPageState();
 }
-
 class _NewsPageState extends State<NewsPage> {
   static List<News> _news = [];
   int currentPage = 1;
@@ -120,7 +127,7 @@ class _NewsPageState extends State<NewsPage> {
   RefreshController controller = RefreshController(initialRefresh: true);
 
   Future<bool> getNews({bool isRefresh = false}) async {
-    if (isRefresh) {
+    if (isRefresh == true) {
       currentPage = 1;
     } else {
       if (currentPage >= totalPages) {
@@ -129,12 +136,12 @@ class _NewsPageState extends State<NewsPage> {
       }
     }
     final response = await http.get(Uri.parse(
-        "https://newsapi.org/v2/top-headlines?country=us&apiKey=e05f822b086d44e7886db0ebbe4d54f6&page=$currentPage&pageSize=10"));
+        "https://newsapi.org/v2/everything?q=crypto&apiKey=e05f822b086d44e7886db0ebbe4d54f6&page=$currentPage&pageSize=10&sortBy=publishedAt"));
 
     if (response.statusCode == 200) {
       final result = NewsDataFromJson(response.body);
 
-      if (isRefresh) {
+      if (isRefresh == true) {
         _news = result.articles;
       } else {
         _news.addAll(result.articles);
@@ -163,7 +170,7 @@ class _NewsPageState extends State<NewsPage> {
           }
         },
         onLoading: () async {
-          final result = await getNews();
+          final result = await getNews(isRefresh: false);
           if (result) {
             controller.loadComplete();
           } else {
@@ -174,13 +181,12 @@ class _NewsPageState extends State<NewsPage> {
         child: ListView.separated(
           itemBuilder: (context, index) {
             final news = _news[index];
-
             return ListTile(
+              leading: Text(news.source.name),
               title: Text(news.title),
-              subtitle: Text(news.source.name),
+              subtitle: Text(news.description),
               onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                   return OneNewsPage(news.source, news.url, news.urlToImage,
                       news.title, news.publishedAt, news.content, news.description);
                 }));
@@ -188,7 +194,7 @@ class _NewsPageState extends State<NewsPage> {
             );
           },
           separatorBuilder: (context, index) =>
-              const Divider(color: Colors.blue),
+              const Divider(color: Colors.blue, height: 20,thickness: 4),
           itemCount: _news.length,
         ),
       ),
@@ -209,9 +215,7 @@ class _NewsPageState extends State<NewsPage> {
         title: const Text('News en direct'),
         centerTitle: true,
       ),
-      body: Container(
-        child: _buildNews(),
-      ),
+      body: _buildNews(),
     );
   }
 }
@@ -225,14 +229,13 @@ class OneNewsPage extends StatefulWidget {
   final String content;
   final String description;
 
-  OneNewsPage(
-      this.source, this.url, this.urlToImage, this.title, this.publishedAt, this.content, this.description);
+  OneNewsPage(this.source, this.url, this.urlToImage, this.title, this.publishedAt, this.content, this.description);
 
   @override
   State<OneNewsPage> createState() => _OneNewsPageState();
 }
-
 class _OneNewsPageState extends State<OneNewsPage> {
+
   String convertToAgo(DateTime input) {
     Duration diff = DateTime.now().difference(input);
     if (diff.inDays >= 1) {
@@ -256,15 +259,13 @@ class _OneNewsPageState extends State<OneNewsPage> {
 
   @override
   Widget build(BuildContext context) {
-    String image = widget.urlToImage;
     DateTime ago = DateTime.parse(widget.publishedAt);
     return Scaffold(
         appBar: AppBar(
           title: const Text('MOCKUP DETAILLED NEWS'),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          child: Column(
+        body: Column(
             children: <Widget>[
               ListTile(
                 title: Text(
@@ -275,14 +276,26 @@ class _OneNewsPageState extends State<OneNewsPage> {
                 subtitle: Text(widget.source.name),
                 onTap: () => url.launch(widget.url, forceWebView: true),
               ),
+              Container(
+                child: Image.network(
+                    widget.urlToImage,
+                    fit: BoxFit.fill,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: Colors.amber,
+                        alignment: Alignment.center,
+                        child: const Text('Error loading image !', style: TextStyle(fontSize: 30),),
+                      );
+                    },
+                  ),
+              ),
               ListTile(
                 subtitle: Text(convertToAgo(ago)),
-                title: Text(widget.description),
+                title: Text(widget.content),
               )
             ],
-          ),
-        )
-        );
+        ),
+    );
   }
 }
 
@@ -292,7 +305,6 @@ class CryptoPage extends StatefulWidget {
   @override
   State<CryptoPage> createState() => _CryptoPageState();
 }
-
 class _CryptoPageState extends State<CryptoPage> {
   List<dynamic> _cryptos = [];
 
@@ -404,7 +416,6 @@ class TransactionsPage extends StatefulWidget {
   @override
   State<TransactionsPage> createState() => _TransactionsPageState();
 }
-
 class _TransactionsPageState extends State<TransactionsPage> {
   @override
   Widget build(BuildContext) {
@@ -418,7 +429,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
         child: ElevatedButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const HomePage()));
+                MaterialPageRoute(builder: (context) => HomePage()));
           },
           child: const Text('Return to home page'),
         ),
@@ -433,7 +444,6 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
-
 class _LoginPageState extends State<LoginPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();

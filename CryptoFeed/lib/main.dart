@@ -37,7 +37,7 @@ class MyDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
-            child: Text('Menu'),
+            child: null,
           ),
           ListTile(
             title: const Text('News Feed'),
@@ -178,24 +178,29 @@ class _NewsPageState extends State<NewsPage> {
           }
           LoadStyle.ShowWhenLoading;
         },
-        child: ListView.separated(
+        child: ListView.builder(
+          padding: const EdgeInsets.all(8),
+          itemCount: _news.length,
           itemBuilder: (context, index) {
             final news = _news[index];
-            return ListTile(
-              leading: Text(news.source.name),
-              title: Text(news.title),
-              subtitle: Text(news.description),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                  return OneNewsPage(news.source, news.url, news.urlToImage,
-                      news.title, news.publishedAt, news.content, news.description);
-                }));
-              },
+            return Card(
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    leading: Text(news.source.name),
+                    title: Text(news.title),
+                    subtitle: Text(news.description),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        return OneNewsPage(news.source, news.url, news.urlToImage,
+                            news.title, news.publishedAt, news.content, news.description);
+                      }));
+                    },
+                  )
+                ],
+              ),
             );
           },
-          separatorBuilder: (context, index) =>
-              const Divider(color: Colors.blue, height: 20,thickness: 4),
-          itemCount: _news.length,
         ),
       ),
     );

@@ -1,136 +1,110 @@
 {
-  "status": "ok",
-  "totalResults": 37,
-  "articles": [
+  "coins": [
     {
-      "source": {
-        "id": "the-wall-street-journal",
-        "name": "The Wall Street Journal"
-      },
-      "author": "Brett Forrest",
-      "title": "Russia Pummels Ukrainian Civilian Targets Ahead of Talks - The Wall Street Journal",
-      "description": "Russian attacks face fierce Ukrainian resistance, as cease-fire talks are set to resume",
-      "url": "https://www.wsj.com/articles/russia-pummels-ukrainian-civilian-targets-ahead-of-talks-11646645852",
-      "urlToImage": "https://images.wsj.net/im-499318/social",
-      "publishedAt": "2022-03-07T12:26:00Z",
-      "content": "LVIV, UkraineRussia pursued a pressure campaign in its invasion of Ukraine with nighttime strikes on civilian targets as the war entered its 12th day, while Kyivs military held fast along several fro… [+326 chars]"
+      "item": {
+        "id": "fantom",
+        "coin_id": 4001,
+        "name": "Fantom",
+        "symbol": "FTM",
+        "market_cap_rank": 43,
+        "thumb": "https://assets.coingecko.com/coins/images/4001/thumb/Fantom.png?1558015016",
+        "small": "https://assets.coingecko.com/coins/images/4001/small/Fantom.png?1558015016",
+        "large": "https://assets.coingecko.com/coins/images/4001/large/Fantom.png?1558015016",
+        "slug": "fantom",
+        "price_btc": 3.107986389554211e-05,
+        "score": 0
+      }
     },
     {
-      "source": {
-        "id": null,
-        "name": "CNBC"
-      },
-      "author": "Sam Meredith, Chloe Taylor, Ted Kemp, Abigail Ng",
-      "title": "Ukraine says Moscow seeking to 'manipulate' cease-fire agreement; oil prices soar to 13-year highs - CNBC",
-      "description": "Ukraine says Moscow is seeking to manipulate its cease-fire arrangement by only allowing Ukrainian civilians to evacuate to Russia and Belarus.",
-      "url": "https://www.cnbc.com/2022/03/07/possible-russian-energy-ban-sends-oil-soaring-poland-us-in-jet-talks.html",
-      "urlToImage": "https://image.cnbcfm.com/api/v1/image/107026034-1646634891584-gettyimages-1238974618-AFP_324K9AR.jpeg?v=1646634696",
-      "publishedAt": "2022-03-07T12:11:00Z",
-      "content": "Moscow is seeking to \"manipulate\" its cease-fire arrangement by only allowing Ukrainian civilians to evacuate to Russia and Belarus, a Ukrainian official has said.\r\nSpeaking at a press briefing in Ky… [+1963 chars]"
+      "item": {
+        "id": "metis-token",
+        "coin_id": 15595,
+        "name": "Metis Token",
+        "symbol": "METIS",
+        "market_cap_rank": 147,
+        "thumb": "https://assets.coingecko.com/coins/images/15595/thumb/metis.PNG?1621298076",
+        "small": "https://assets.coingecko.com/coins/images/15595/small/metis.PNG?1621298076",
+        "large": "https://assets.coingecko.com/coins/images/15595/large/metis.PNG?1621298076",
+        "slug": "metis-token",
+        "price_btc": 0.0041848487283658534,
+        "score": 1
+      }
     },
     {
-      "source": {
-        "id": null,
-        "name": "CNBC"
-      },
-      "author": "Lauren Thomas",
-      "title": "Bed Bath & Beyond shares surge 65% after GameStop chairman reveals big stake, pushes turnaround - CNBC",
-      "description": "Bed Bath & Beyond surged after GameStop Chairman Ryan Cohen revealed he had a nearly 10% stake in the retailer, through his investment company RC Ventures.",
-      "url": "https://www.cnbc.com/2022/03/07/bed-bath-beyond-shares-surge-after-gamestop-chairman-reveals-big-stake.html",
-      "urlToImage": "https://image.cnbcfm.com/api/v1/image/106973593-1636570042341-gettyimages-166230604-74127580.jpeg?v=1636732646",
-      "publishedAt": "2022-03-07T12:00:05Z",
-      "content": "Bed Bath &amp; Beyond surged more than 65% in premarket trading Monday after GameStop Chairman Ryan Cohen revealed he had a nearly 10% stake in the retailer, through his investment company RC Venture… [+2229 chars]"
+      "item": {
+        "id": "kadena",
+        "coin_id": 3693,
+        "name": "Kadena",
+        "symbol": "KDA",
+        "market_cap_rank": 86,
+        "thumb": "https://assets.coingecko.com/coins/images/3693/thumb/djLWD6mR_400x400.jpg?1591080616",
+        "small": "https://assets.coingecko.com/coins/images/3693/small/djLWD6mR_400x400.jpg?1591080616",
+        "large": "https://assets.coingecko.com/coins/images/3693/large/djLWD6mR_400x400.jpg?1591080616",
+        "slug": "kadena",
+        "price_btc": 0.00017045792250119005,
+        "score": 2
+      }
     },
     {
-      "source": {
-        "id": null,
-        "name": "New York Times"
-      },
-      "author": "Madeleine Ngo, Adam Bednar, Esha Ray",
-      "title": "Trucker Convoy Protesting Covid Mandates Slows Traffic Around Washington - The New York Times",
-      "description": "The convoy slowed traffic outside the capital for hours before fading in the afternoon.",
-      "url": "https://www.nytimes.com/2022/03/06/us/trucker-convoy-dc-beltway.html",
-      "urlToImage": "https://static01.nyt.com/images/2022/03/05/multimedia/05virus-briefing-convoy/05virus-briefing-convoy-facebookJumbo.jpg",
-      "publishedAt": "2022-03-07T11:52:00Z",
-      "content": "Although the Peoples Convoy was one of several groups inspired by the Canadian protests against pandemic measures that disrupted the capital of Ottawa for three weeks, many in the group appeared to b… [+2051 chars]"
+      "item": {
+        "id": "pallapay",
+        "coin_id": 16200,
+        "name": "Pallapay",
+        "symbol": "PALLA",
+        "market_cap_rank": 975,
+        "thumb": "https://assets.coingecko.com/coins/images/16200/thumb/palla.png?1647095947",
+        "small": "https://assets.coingecko.com/coins/images/16200/small/palla.png?1647095947",
+        "large": "https://assets.coingecko.com/coins/images/16200/large/palla.png?1647095947",
+        "slug": "pallapay",
+        "price_btc": 5.60977145446989e-07,
+        "score": 3
+      }
     },
     {
-      "source": {
-        "id": "the-verge",
-        "name": "The Verge"
-      },
-      "author": "James Vincent",
-      "title": "Samsung confirms hackers stole Galaxy source code - The Verge",
-      "description": "Samsung has confirmed that hackers breached the company’s internal systems, stealing data including source for Galaxy devices. The hacking group Lapsus$ has claimed responsibility, but Samsung has not confirmed its involvement.",
-      "url": "https://www.theverge.com/2022/3/7/22965220/samsung-hack-lapsus-galaxy-source-code-confirmed-nvidia",
-      "urlToImage": "https://cdn.vox-cdn.com/thumbor/iljP-g85UP4DsoQSQ9ljBRyuyUU=/0x146:2040x1214/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/23256275/ajohnson_220216_5032_0004.jpg",
-      "publishedAt": "2022-03-07T11:18:30Z",
-      "content": "The same group behind a recent Nvidia hack has claimed responsibility\r\nPhoto by Allison Johnson / The Verge\r\nHackers have successfully stolen internal company data and source code for Galaxy devices … [+1614 chars]"
+      "item": {
+        "id": "terra-luna",
+        "coin_id": 8284,
+        "name": "Terra",
+        "symbol": "LUNA",
+        "market_cap_rank": 7,
+        "thumb": "https://assets.coingecko.com/coins/images/8284/thumb/luna1557227471663.png?1567147072",
+        "small": "https://assets.coingecko.com/coins/images/8284/small/luna1557227471663.png?1567147072",
+        "large": "https://assets.coingecko.com/coins/images/8284/large/luna1557227471663.png?1567147072",
+        "slug": "terra-luna",
+        "price_btc": 0.002284326597725522,
+        "score": 4
+      }
     },
     {
-      "source": {
-        "id": null,
-        "name": "Nintendo Life"
-      },
-      "author": "Alana Hagues",
-      "title": "Nintendo Switch Online App Version 2.0.0 Includes Biggest Updates Yet - Nintendo Life",
-      "description": "A new lick of paint and more!",
-      "url": "https://www.nintendolife.com/news/2022/03/nintendo-switch-online-app-version-2-0-0-includes-biggest-updates-yet",
-      "urlToImage": "https://images.nintendolife.com/1fe65979b518d/1280x720.jpg",
-      "publishedAt": "2022-03-07T11:00:00Z",
-      "content": "Image: Nintendo\r\nThe Nintendo Switch Online App has been updated to version 2.0.0 this morning, bringing with it a whole slew of changes that are absolutely for the best.\r\nThis is the biggest overhau… [+1083 chars]"
+      "item": {
+        "id": "stepn",
+        "coin_id": 23597,
+        "name": "STEPN",
+        "symbol": "GMT",
+        "market_cap_rank": 303,
+        "thumb": "https://assets.coingecko.com/coins/images/23597/thumb/gmt.png?1644658792",
+        "small": "https://assets.coingecko.com/coins/images/23597/small/gmt.png?1644658792",
+        "large": "https://assets.coingecko.com/coins/images/23597/large/gmt.png?1644658792",
+        "slug": "stepn",
+        "price_btc": 6.598126036954867e-06,
+        "score": 5
+      }
     },
     {
-      "source": {
-        "id": null,
-        "name": "WCVB Boston"
-      },
-      "author": "Josh Brogadir",
-      "title": "Average price of gas in Massachusetts rises above $4 per gallon, according to AAA - WCVB Boston",
-      "description": "NewsCenter 5 has found prices for regular gasoline as high as $4.29 per gallon at some stations.",
-      "url": "https://www.wcvb.com/article/higher-gas-prices-massachusetts-march-6-2022/39342144",
-      "urlToImage": "https://kubrick.htvapps.com/htv-prod-media.s3.amazonaws.com/images/high-gas-prices-in-massachusetts-march-2022-1646593545.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*",
-      "publishedAt": "2022-03-07T10:30:00Z",
-      "content": "BOSTON —The average price of regular gasoline in Massachusetts has risen above $4 per gallon for the first time since the Great Recession, according to AAA.\r\nAAA said the average price for gas in the… [+1120 chars]"
-    },
-    {
-      "source": {
-        "id": "cnn",
-        "name": "CNN"
-      },
-      "author": "Raja Razek and Travis Caldwell, CNN",
-      "title": "Thousands of acres near Panama City are torched as Florida Panhandle wildfires continue - CNN",
-      "description": "With nearly 1,100 homes evacuated, firefighting crews continue to battle several dangerous wildfires across three counties in the Florida Panhandle, officials said.",
-      "url": "https://www.cnn.com/2022/03/07/us/florida-panhandle-wildfire-monday/index.html",
-      "urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/220307014157-florida-wildfire-aftermath-03052022-super-tease.jpg",
-      "publishedAt": "2022-03-07T10:16:00Z",
-      "content": "(CNN)With nearly 1,100 homes evacuated, firefighting crews continue to battle several dangerous wildfires across three counties in the Florida Panhandle, officials said. \r\nThe most prominent blaze, t… [+3867 chars]"
-    },
-    {
-      "source": {
-        "id": "reuters",
-        "name": "Reuters"
-      },
-      "author": null,
-      "title": "Cricket Autopsy shows Australian Warne died of natural causes - Thai police - Reuters.com",
-      "description": "An autopsy showed the death last week of Australian cricket great Shane Warne on an island in Thailand was due to natural causes, the Thai police said on Monday.",
-      "url": "https://www.reuters.com/lifestyle/sports/cricket-autopsy-showed-australian-warnes-death-due-natural-causes-thai-police-2022-03-07/",
-      "urlToImage": "https://www.reuters.com/resizer/hkTmUUzI5sgCNrZzFWNN6HA-PIs=/1200x628/smart/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/TUPU7H7GTJN25BWUXJS3UA7AHE.jpg",
-      "publishedAt": "2022-03-07T10:14:00Z",
-      "content": "KOH SAMUI, Thailand, March 7 (Reuters) - An autopsy showed the death last week of Australian cricket great Shane Warne on an island in Thailand was due to natural causes, the Thai police said on Mond… [+2819 chars]"
-    },
-    {
-      "source": {
-        "id": "cnn",
-        "name": "CNN"
-      },
-      "author": "Laura He, CNN Business",
-      "title": "Stocks sink and oil prices soar as US and allies consider Russian import ban - CNN",
-      "description": "Stocks are tumbling on Monday as oil prices soared above $120 barrel to their highest level in 13 years, raising fears about an inflationary shock to the global economy.",
-      "url": "https://www.cnn.com/2022/03/06/investing/global-markets-oil-highest-2008/index.html",
-      "urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/220306210754-japan-stock-market-03072022-super-tease.jpg",
-      "publishedAt": "2022-03-07T10:07:00Z",
-      "content": null
+      "item": {
+        "id": "juno-network",
+        "coin_id": 19249,
+        "name": "JUNO",
+        "symbol": "JUNO",
+        "market_cap_rank": 63,
+        "thumb": "https://assets.coingecko.com/coins/images/19249/thumb/juno.png?1642838082",
+        "small": "https://assets.coingecko.com/coins/images/19249/small/juno.png?1642838082",
+        "large": "https://assets.coingecko.com/coins/images/19249/large/juno.png?1642838082",
+        "slug": "juno-network",
+        "price_btc": 0.000981236037495771,
+        "score": 6
+      }
     }
-  ]
+  ],
+  "exchanges": []
 }

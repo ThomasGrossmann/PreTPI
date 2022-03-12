@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart' as url;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'data/news_data.dart';
+import 'data/trending_data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -98,17 +100,73 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext) {
+  static List<Trending> _trending = [];
+  
+  RefreshController controller = RefreshController(initialRefresh: true);
+  
+  Future<bool> getTrending({bool isRefresh = false}) async {
+    if (isRefresh == false) {
+      controller.loadNoData();
+      return false;
+    }
+    final response = await http.get(Uri.parse("https://api.coingecko.com/api/v3/search/trending"));
+
+    if(response.statusCode == 200) {
+      final result = TrendingDataFromJson(response.body);
+
+      if(isRefresh == true) {
+        _trending = result.coins;
+      }
+
+      setState(() {});
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Widget _buildTrending() {
     return Scaffold(
+      body: SmartRefresher(
+        controller: controller,
+        enablePullUp: true,
+        onRefresh: () async {
+          final result = await getTrending(isRefresh: true);
+          if (result) {
+            controller.refreshCompleted();
+          } else {
+            controller.refreshFailed();
+          }
+        },
+        onLoading: () async {
+          final result = await getTrending(isRefresh: false);
+          if (result) {
+            controller.loadComplete();
+          } else {
+            controller.loadFailed();
+          }
+          LoadStyle.ShowWhenLoading;
+        },
+        child: null,//TODO : Display Trendings in HomePage
+      )
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getTrending();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: const MyDrawer(),
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Trending'),
         centerTitle: true,
       ),
-      drawer: const MyDrawer(),
-      body: const Center(
-        child: Text('This is the emptiness... But nor for long'),
-      ),
+      body: _buildTrending(),
     );
   }
 }
@@ -136,7 +194,7 @@ class _NewsPageState extends State<NewsPage> {
       }
     }
     final response = await http.get(Uri.parse(
-        "https://newsapi.org/v2/everything?q=crypto&apiKey=e05f822b086d44e7886db0ebbe4d54f6&page=$currentPage&pageSize=10&sortBy=publishedAt"));
+        "https://newsapi.org/v2/everything?q=crypto&apiKey=e05f822b086d44e7886db0ebbe4d54f6&q=crypto&page=$currentPage&pageSize=10&sortBy=publishedAt"));
 
     if (response.statusCode == 200) {
       final result = NewsDataFromJson(response.body);
@@ -355,6 +413,7 @@ class _CryptoPageState extends State<CryptoPage> {
         itemCount: _cryptos.length,
         itemBuilder: (BuildContext context, int index) {
           String image = _cryptos[index]['image']['large'];
+          String id = _cryptos[index]['id'];
           return Card(
             child: Column(
               children: <Widget>[

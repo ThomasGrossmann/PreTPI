@@ -1,4 +1,3 @@
-/* Testing purposes at the moment */
 import 'dart:convert';
 
 NewsData NewsDataFromJson(String str) => NewsData.fromJson(json.decode(str));

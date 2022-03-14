@@ -18,7 +18,6 @@ class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
-
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
@@ -51,16 +50,14 @@ class MyDrawer extends StatelessWidget {
       child: ListView(
         children: [
           Container(
-            height: 55,
+            height: 60,
             child: const DrawerHeader(
               child: Text(
-                'Naviagtion Tab',
+                'Navigation Tab',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 20),
               ),
             ),
-            margin: const EdgeInsets.all(0.0),
-            padding: const EdgeInsets.all(0.0),
           ),
           ListTile(
             title: const Text('News Feed'),
@@ -70,6 +67,7 @@ class MyDrawer extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const NewsPage()),
               );
             },
+            leading: const Icon(Icons.new_releases_sharp),
           ),
           ListTile(
             title: const Text('Cryptocurrencies'),
@@ -79,9 +77,10 @@ class MyDrawer extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const CryptoPage()),
               );
             },
+            leading: const Icon(Icons.monetization_on),
           ),
           ListTile(
-            title: const Text('My transactions'),
+            title: const Text('My Transactions'),
             onTap: () {
               Navigator.push(
                 context,
@@ -89,21 +88,24 @@ class MyDrawer extends StatelessWidget {
                     builder: (context) => const TransactionsPage()),
               );
             },
+            leading: const Icon(Icons.compare_arrows_outlined),
           ),
           ListTile(
-              title: const Text('Home'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const HomePage()));
-              }),
+            title: const Text('Home'),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
+            },
+            leading: const Icon(Icons.house),
+          ),
           Align(
             child: FloatingActionButton.extended(
               onPressed: () {
                 currentTheme.switchTheme();
               },
-              label: const Text('Switch Theme Mode'),
+              label: const Text('Light/Dark Mode'),
+              icon: const Icon(Icons.brightness_6_outlined),
             ),
-            alignment: Alignment.bottomCenter,
           ),
           /*ListTile(
             title: const Text('Login'),
@@ -126,13 +128,12 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
-
 class _HomePageState extends State<HomePage> {
   static List<Trending> _trending = [];
 
   RefreshController controller = RefreshController(initialRefresh: true);
 
-  Future<bool> getTrending({bool isRefresh = false}) async {
+  Future<bool> getTrending({bool isRefresh = true}) async {
     if (isRefresh == false) {
       controller.loadNoData();
       return false;
@@ -157,27 +158,34 @@ class _HomePageState extends State<HomePage> {
   Widget _buildTrending() {
     return Scaffold(
         body: SmartRefresher(
-      controller: controller,
-      enablePullUp: true,
-      onRefresh: () async {
-        final result = await getTrending(isRefresh: true);
-        if (result) {
-          controller.refreshCompleted();
-        } else {
-          controller.refreshFailed();
-        }
-      },
-      onLoading: () async {
-        final result = await getTrending(isRefresh: false);
-        if (result) {
-          controller.loadComplete();
-        } else {
-          controller.loadFailed();
-        }
-        LoadStyle.ShowWhenLoading;
-      },
-      child: const Text(
-          'Nothing to see here.'), //TODO : Display Trendings in HomePage
+        controller: controller,
+        onRefresh: () async {
+          final result = await getTrending(isRefresh: true);
+          if (result) {
+            controller.refreshCompleted();
+          } else {
+            controller.refreshFailed();
+          }
+        },
+        child: ListView.builder(
+          padding: EdgeInsets.all(8),
+          itemCount: _trending.length,
+          itemBuilder: (context, index) {
+            final trending = _trending[index];
+            return Card(
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    leading: Image.network(trending.item.large),
+                    title: Text(trending.item.name),
+                    subtitle: Text(trending.item.symbol),
+                    trailing: Text('#${index + 1}'),
+                  )
+                ],
+              ),
+            );
+          },
+        ),
     ));
   }
 
@@ -192,7 +200,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: const MyDrawer(),
       appBar: AppBar(
-        title: const Text('Trending'),
+        title: const Text('Trending Searches'),
         centerTitle: true,
       ),
       body: _buildTrending(),
@@ -206,7 +214,6 @@ class NewsPage extends StatefulWidget {
   @override
   State<NewsPage> createState() => _NewsPageState();
 }
-
 class _NewsPageState extends State<NewsPage> {
   static List<News> _news = [];
   int currentPage = 1;
@@ -312,14 +319,13 @@ class _NewsPageState extends State<NewsPage> {
     return Scaffold(
       drawer: const MyDrawer(),
       appBar: AppBar(
-        title: const Text('News en direct'),
+        title: const Text('News Feed'),
         centerTitle: true,
       ),
       body: _buildNews(),
     );
   }
 }
-
 class OneNewsPage extends StatefulWidget {
   final Source source;
   final String url;
@@ -335,7 +341,6 @@ class OneNewsPage extends StatefulWidget {
   @override
   State<OneNewsPage> createState() => _OneNewsPageState();
 }
-
 class _OneNewsPageState extends State<OneNewsPage> {
   String convertToAgo(DateTime input) {
     Duration diff = DateTime.now().difference(input);
@@ -407,7 +412,6 @@ class CryptoPage extends StatefulWidget {
   @override
   State<CryptoPage> createState() => _CryptoPageState();
 }
-
 class _CryptoPageState extends State<CryptoPage> {
   List<dynamic> _cryptos = [];
 
@@ -453,7 +457,6 @@ class _CryptoPageState extends State<CryptoPage> {
         itemCount: _cryptos.length,
         itemBuilder: (BuildContext context, int index) {
           String image = _cryptos[index]['image']['large'];
-          String id = _cryptos[index]['id'];
           return Card(
             child: Column(
               children: <Widget>[
@@ -468,7 +471,7 @@ class _CryptoPageState extends State<CryptoPage> {
                               [holder]
                           .toString() +
                       " $currency"),
-                  trailing: const Icon(Icons.favorite),
+                  //trailing: const Icon(Icons.favorite),
                 )
               ],
             ),
@@ -491,11 +494,11 @@ class _CryptoPageState extends State<CryptoPage> {
     return Scaffold(
       drawer: const MyDrawer(),
       appBar: AppBar(
-        title: const Text('Cryptomonnaies'),
+        title: const Text('Cryptocurrencies'),
         centerTitle: true,
         actions: <Widget>[
           DropdownButton(
-            icon: const Icon(Icons.price_change),
+            icon: const Icon(Icons.price_change_sharp),
             items: listCurrencies,
             onChanged: (String? value) {
               setState(() {
@@ -520,7 +523,6 @@ class TransactionsPage extends StatefulWidget {
   @override
   State<TransactionsPage> createState() => _TransactionsPageState();
 }
-
 class _TransactionsPageState extends State<TransactionsPage> {
   @override
   Widget build(BuildContext) {
@@ -533,8 +535,8 @@ class _TransactionsPageState extends State<TransactionsPage> {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const HomePage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const HomePage()));
           },
           child: const Text('Return to home page'),
         ),
@@ -549,7 +551,6 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
-
 class _LoginPageState extends State<LoginPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();

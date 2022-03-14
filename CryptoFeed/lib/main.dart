@@ -1,29 +1,44 @@
 import 'dart:convert';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:untitled2/config/config.dart';
 import 'package:url_launcher/url_launcher.dart' as url;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'data/news_data.dart';
 import 'data/trending_data.dart';
+import 'config/config.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'CryptoFeed',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomePage(),
+      home: NewsPage(),
+      //HomePage(),
       debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: currentTheme.currentTheme(),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    currentTheme.addListener(() {
+      setState(() {});
+    });
   }
 }
 
@@ -35,11 +50,17 @@ class MyDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
+          Container(
+            height: 55,
+            child: const DrawerHeader(
+              child: Text(
+                'Naviagtion Tab',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20),
+              ),
             ),
-            child: null,
+            margin: const EdgeInsets.all(0.0),
+            padding: const EdgeInsets.all(0.0),
           ),
           ListTile(
             title: const Text('News Feed'),
@@ -72,12 +93,18 @@ class MyDrawer extends StatelessWidget {
           ListTile(
               title: const Text('Home'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage())
-                );
-              }
-          )
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              }),
+          Align(
+            child: FloatingActionButton.extended(
+              onPressed: () {
+                currentTheme.switchTheme();
+              },
+              label: const Text('Switch Theme Mode'),
+            ),
+            alignment: Alignment.bottomCenter,
+          ),
           /*ListTile(
             title: const Text('Login'),
             onTap: () {
@@ -99,22 +126,24 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
 class _HomePageState extends State<HomePage> {
   static List<Trending> _trending = [];
-  
+
   RefreshController controller = RefreshController(initialRefresh: true);
-  
+
   Future<bool> getTrending({bool isRefresh = false}) async {
     if (isRefresh == false) {
       controller.loadNoData();
       return false;
     }
-    final response = await http.get(Uri.parse("https://api.coingecko.com/api/v3/search/trending"));
+    final response = await http
+        .get(Uri.parse("https://api.coingecko.com/api/v3/search/trending"));
 
-    if(response.statusCode == 200) {
+    if (response.statusCode == 200) {
       final result = TrendingDataFromJson(response.body);
 
-      if(isRefresh == true) {
+      if (isRefresh == true) {
         _trending = result.coins;
       }
 
@@ -127,29 +156,29 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildTrending() {
     return Scaffold(
-      body: SmartRefresher(
-        controller: controller,
-        enablePullUp: true,
-        onRefresh: () async {
-          final result = await getTrending(isRefresh: true);
-          if (result) {
-            controller.refreshCompleted();
-          } else {
-            controller.refreshFailed();
-          }
-        },
-        onLoading: () async {
-          final result = await getTrending(isRefresh: false);
-          if (result) {
-            controller.loadComplete();
-          } else {
-            controller.loadFailed();
-          }
-          LoadStyle.ShowWhenLoading;
-        },
-        child: null,//TODO : Display Trendings in HomePage
-      )
-    );
+        body: SmartRefresher(
+      controller: controller,
+      enablePullUp: true,
+      onRefresh: () async {
+        final result = await getTrending(isRefresh: true);
+        if (result) {
+          controller.refreshCompleted();
+        } else {
+          controller.refreshFailed();
+        }
+      },
+      onLoading: () async {
+        final result = await getTrending(isRefresh: false);
+        if (result) {
+          controller.loadComplete();
+        } else {
+          controller.loadFailed();
+        }
+        LoadStyle.ShowWhenLoading;
+      },
+      child: const Text(
+          'Nothing to see here.'), //TODO : Display Trendings in HomePage
+    ));
   }
 
   @override
@@ -177,6 +206,7 @@ class NewsPage extends StatefulWidget {
   @override
   State<NewsPage> createState() => _NewsPageState();
 }
+
 class _NewsPageState extends State<NewsPage> {
   static List<News> _news = [];
   int currentPage = 1;
@@ -249,9 +279,16 @@ class _NewsPageState extends State<NewsPage> {
                     title: Text(news.title),
                     subtitle: Text(news.description),
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                        return OneNewsPage(news.source, news.url, news.urlToImage,
-                            news.title, news.publishedAt, news.content, news.description);
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return OneNewsPage(
+                            news.source,
+                            news.url,
+                            news.urlToImage,
+                            news.title,
+                            news.publishedAt,
+                            news.content,
+                            news.description);
                       }));
                     },
                   )
@@ -292,13 +329,14 @@ class OneNewsPage extends StatefulWidget {
   final String content;
   final String description;
 
-  OneNewsPage(this.source, this.url, this.urlToImage, this.title, this.publishedAt, this.content, this.description);
+  OneNewsPage(this.source, this.url, this.urlToImage, this.title,
+      this.publishedAt, this.content, this.description);
 
   @override
   State<OneNewsPage> createState() => _OneNewsPageState();
 }
-class _OneNewsPageState extends State<OneNewsPage> {
 
+class _OneNewsPageState extends State<OneNewsPage> {
   String convertToAgo(DateTime input) {
     Duration diff = DateTime.now().difference(input);
     if (diff.inDays >= 1) {
@@ -324,40 +362,41 @@ class _OneNewsPageState extends State<OneNewsPage> {
   Widget build(BuildContext context) {
     DateTime ago = DateTime.parse(widget.publishedAt);
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('MOCKUP DETAILLED NEWS'),
-          centerTitle: true,
-        ),
-        body: Column(
-            children: <Widget>[
-              ListTile(
-                title: Text(
-                  widget.title,
-                  style: const TextStyle(fontSize: 23),
-                  textAlign: TextAlign.justify,
+      appBar: AppBar(
+        title: const Text('MOCKUP DETAILLED NEWS'),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: <Widget>[
+          ListTile(
+            title: Text(
+              widget.title,
+              style: const TextStyle(fontSize: 23),
+              textAlign: TextAlign.justify,
+            ),
+            subtitle: Text(widget.source.name),
+            onTap: () => url.launch(widget.url, forceWebView: true),
+          ),
+          Image.network(
+            widget.urlToImage,
+            fit: BoxFit.fill,
+            errorBuilder: (context, error, stackTrace) {
+              return Container(
+                color: Colors.amber,
+                alignment: Alignment.center,
+                child: const Text(
+                  'Error loading image !',
+                  style: TextStyle(fontSize: 30),
                 ),
-                subtitle: Text(widget.source.name),
-                onTap: () => url.launch(widget.url, forceWebView: true),
-              ),
-              Container(
-                child: Image.network(
-                    widget.urlToImage,
-                    fit: BoxFit.fill,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        color: Colors.amber,
-                        alignment: Alignment.center,
-                        child: const Text('Error loading image !', style: TextStyle(fontSize: 30),),
-                      );
-                    },
-                  ),
-              ),
-              ListTile(
-                subtitle: Text(convertToAgo(ago)),
-                title: Text(widget.content),
-              )
-            ],
-        ),
+              );
+            },
+          ),
+          ListTile(
+            subtitle: Text(convertToAgo(ago)),
+            title: Text(widget.content),
+          )
+        ],
+      ),
     );
   }
 }
@@ -368,6 +407,7 @@ class CryptoPage extends StatefulWidget {
   @override
   State<CryptoPage> createState() => _CryptoPageState();
 }
+
 class _CryptoPageState extends State<CryptoPage> {
   List<dynamic> _cryptos = [];
 
@@ -480,20 +520,21 @@ class TransactionsPage extends StatefulWidget {
   @override
   State<TransactionsPage> createState() => _TransactionsPageState();
 }
+
 class _TransactionsPageState extends State<TransactionsPage> {
   @override
   Widget build(BuildContext) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mes Transactions'),
+        title: const Text('My Transactions'),
         centerTitle: true,
       ),
       drawer: const MyDrawer(),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => HomePage()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => const HomePage()));
           },
           child: const Text('Return to home page'),
         ),
@@ -508,6 +549,7 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
+
 class _LoginPageState extends State<LoginPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();

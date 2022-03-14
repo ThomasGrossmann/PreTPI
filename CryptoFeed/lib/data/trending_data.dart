@@ -1,9 +1,6 @@
 /* Testing purposes at the moment */
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 TrendingData TrendingDataFromJson(String str) => TrendingData.fromJson(json.decode(str));
 
 class TrendingData {
@@ -13,7 +10,7 @@ class TrendingData {
   List<Trending> coins;
 
   factory TrendingData.fromJson(Map<String, dynamic> json) => TrendingData(
-    coins: List<Trending>.from(json['coins']['items'].map((x) => Trending.fromJson(x))),
+    coins: List<Trending>.from(json["coins"]['items'].map((x) => Trending.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {

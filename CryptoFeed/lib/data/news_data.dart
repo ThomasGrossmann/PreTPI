@@ -1,16 +1,31 @@
 import 'dart:convert';
 
+TotalResults TotalResultsFromJson(String str) => TotalResults.fromJson(json.decode(str));
 NewsData NewsDataFromJson(String str) => NewsData.fromJson(json.decode(str));
 //String NewsDataToJson(NewsData data) => json.encode(data.toJson());
 
+class TotalResults {
+  TotalResults({
+    required this.totalResults
+  });
+  String totalResults;
+
+  factory TotalResults.fromJson(Map<String, dynamic> json) => TotalResults(
+    totalResults: json['totalResults'].toString(),
+  );
+}
+
 class NewsData {
   NewsData({
-    required this.articles
+    required this.articles,
+    //required this.totalResults
   });
   List<News> articles;
+  //int totalResults;
 
   factory NewsData.fromJson(Map<String, dynamic> json) => NewsData(
     articles: List<News>.from(json['articles'].map((x) => News.fromJson(x))),
+    //totalResults : json['totalResults'],
   );
 
   Map<String, dynamic> toJson() => {

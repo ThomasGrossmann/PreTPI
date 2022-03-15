@@ -217,11 +217,15 @@ class NewsPage extends StatefulWidget {
 class _NewsPageState extends State<NewsPage> {
   static List<News> _news = [];
   int currentPage = 1;
-  int totalPages = 4;
-
   RefreshController controller = RefreshController(initialRefresh: true);
 
   Future<bool> getNews({bool isRefresh = false}) async {
+    final response = await http.get(Uri.parse(
+        "https://newsapi.org/v2/everything?q=crypto&apiKey=e05f822b086d44e7886db0ebbe4d54f6&q=crypto&page=$currentPage&pageSize=10&sortBy=publishedAt"));
+
+    final totalResults = TotalResultsFromJson(response.body);
+    final totalPages = int.parse(totalResults.totalResults)/10;
+
     if (isRefresh == true) {
       currentPage = 1;
     } else {
@@ -230,8 +234,6 @@ class _NewsPageState extends State<NewsPage> {
         return false;
       }
     }
-    final response = await http.get(Uri.parse(
-        "https://newsapi.org/v2/everything?q=crypto&apiKey=e05f822b086d44e7886db0ebbe4d54f6&q=crypto&page=$currentPage&pageSize=10&sortBy=publishedAt"));
 
     if (response.statusCode == 200) {
       final result = NewsDataFromJson(response.body);
@@ -368,19 +370,20 @@ class _OneNewsPageState extends State<OneNewsPage> {
     DateTime ago = DateTime.parse(widget.publishedAt);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MOCKUP DETAILLED NEWS'),
+        title: Text(widget.source.name),
         centerTitle: true,
       ),
       body: Column(
         children: <Widget>[
-          ListTile(
-            title: Text(
-              widget.title,
-              style: const TextStyle(fontSize: 23),
-              textAlign: TextAlign.justify,
+          Card(
+            child: ListTile(
+              title: Text(
+                widget.title,
+                style: const TextStyle(fontSize: 23),
+              ),
+              subtitle: const Text('Click to open in navigator'),
+              onTap: () => url.launch(widget.url, forceWebView: true),
             ),
-            subtitle: Text(widget.source.name),
-            onTap: () => url.launch(widget.url, forceWebView: true),
           ),
           Image.network(
             widget.urlToImage,
@@ -396,10 +399,12 @@ class _OneNewsPageState extends State<OneNewsPage> {
               );
             },
           ),
-          ListTile(
-            subtitle: Text(convertToAgo(ago)),
-            title: Text(widget.content),
-          )
+          Card(
+              child: ListTile(
+                title: Text(widget.content),
+              ),
+          ),
+          Text('Posted '+convertToAgo(ago))
         ],
       ),
     );

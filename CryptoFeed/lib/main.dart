@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:untitled2/config/config.dart';
+import 'package:untitled2/splash_screen.dart';
 import 'package:untitled2/widget/drawer.dart';
 import 'package:url_launcher/url_launcher.dart' as url;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -20,12 +21,13 @@ class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
+
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'CryptoFeed',
-      home: const TrendingPage(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
@@ -48,6 +50,7 @@ class TrendingPage extends StatefulWidget {
   @override
   State<TrendingPage> createState() => _TrendingPageState();
 }
+
 class _TrendingPageState extends State<TrendingPage> {
   static List<Trending> _trending = [];
 
@@ -134,6 +137,7 @@ class NewsPage extends StatefulWidget {
   @override
   State<NewsPage> createState() => _NewsPageState();
 }
+
 class _NewsPageState extends State<NewsPage> {
   static List<News> _news = [];
   int currentPage = 1;
@@ -181,10 +185,9 @@ class _NewsPageState extends State<NewsPage> {
         onPressed: () {
           SchedulerBinding.instance?.addPostFrameCallback((_) {
             _scrollController.animateTo(
-              _scrollController.position.minScrollExtent,
-              duration: const Duration(milliseconds: 400),
-              curve: Curves.fastOutSlowIn
-            );
+                _scrollController.position.minScrollExtent,
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.fastOutSlowIn);
           });
         },
         icon: const Icon(Icons.arrow_upward),
@@ -279,6 +282,7 @@ class OneNewsPage extends StatefulWidget {
   @override
   State<OneNewsPage> createState() => _OneNewsPageState();
 }
+
 class _OneNewsPageState extends State<OneNewsPage> {
   String convertToAgo(DateTime input) {
     Duration diff = DateTime.now().difference(input);
@@ -319,7 +323,8 @@ class _OneNewsPageState extends State<OneNewsPage> {
               ),
               subtitle: TextButton(
                   onPressed: () {
-                    url.launch(widget.url, forceWebView: true);
+                    url.launch(widget.url,
+                        forceWebView: true, enableJavaScript: true);
                   },
                   child: const Text('Click to open in navigator')),
             ),
@@ -368,6 +373,7 @@ class CryptoPage extends StatefulWidget {
   @override
   State<CryptoPage> createState() => _CryptoPageState();
 }
+
 class _CryptoPageState extends State<CryptoPage> {
   List<dynamic> _cryptos = [];
   final ScrollController _scrollController = ScrollController();
@@ -416,8 +422,7 @@ class _CryptoPageState extends State<CryptoPage> {
             _scrollController.animateTo(
                 _scrollController.position.minScrollExtent,
                 duration: const Duration(milliseconds: 400),
-                curve: Curves.fastOutSlowIn
-            );
+                curve: Curves.fastOutSlowIn);
           });
         },
         icon: const Icon(Icons.arrow_upward),
@@ -494,6 +499,7 @@ class TransactionsPage extends StatefulWidget {
   @override
   State<TransactionsPage> createState() => _TransactionsPageState();
 }
+
 class _TransactionsPageState extends State<TransactionsPage> {
   @override
   Widget build(BuildContext) {

@@ -7,18 +7,21 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Drawer(
       child: ListView(
         children: [
-          Container(
-            height: 60,
-            child: const DrawerHeader(
-              child: Text(
-                'Navigation Tab',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
+          SizedBox(
+            height: 300,
+            child: DrawerHeader(
+                child: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(isDarkMode
+                          ? 'lib/widget/assets/Logo.png'
+                          : 'lib/widget/assets/Logo_invert.png'),
+                      fit: BoxFit.cover)),
+            )),
           ),
           ListTile(
             title: const Text('News Feed'),

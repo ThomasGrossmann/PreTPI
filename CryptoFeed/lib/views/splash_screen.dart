@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:untitled2/main.dart';
+import 'package:untitled2/views/all.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -42,6 +42,6 @@ class _SplashScreenState extends State<SplashScreen> {
             pageBuilder: (c, a1, a2) => TrendingPage(),
             transitionsBuilder: (c, anim, a2, child) =>
                 FadeTransition(opacity: anim, child: child),
-            transitionDuration: const Duration(milliseconds: 2000)));
+            transitionDuration: const Duration(milliseconds: 1500)));
   }
 }

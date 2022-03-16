@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/main.dart';
 import 'package:untitled2/config/config.dart';
+import 'package:untitled2/views/all.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -22,6 +22,16 @@ class MyDrawer extends StatelessWidget {
                           : 'lib/widget/assets/Logo_invert.png'),
                       fit: BoxFit.cover)),
             )),
+          ),
+          ListTile(
+            title: const Text('Login'),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const LoginPage()));
+            },
+            leading: const Icon(Icons.login),
           ),
           ListTile(
             title: const Text('News Feed'),
@@ -55,7 +65,7 @@ class MyDrawer extends StatelessWidget {
             leading: const Icon(Icons.compare_arrows_outlined),
           ),
           ListTile(
-            title: const Text('Home'),
+            title: const Text('Trending Searches'),
             onTap: () {
               Navigator.push(
                   context,
@@ -73,15 +83,6 @@ class MyDrawer extends StatelessWidget {
               icon: const Icon(Icons.brightness_6_outlined),
             ),
           ),
-          /*ListTile(
-            title: const Text('Login'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
-              );
-            },
-          ),*/
         ],
       ),
     );

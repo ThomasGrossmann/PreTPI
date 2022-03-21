@@ -50,7 +50,7 @@ class _TrendingPageState extends State<TrendingPage> {
             }
           },
           child: ListView.builder(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             itemCount: _trending.length,
             itemBuilder: (context, index) {
               final trending = _trending[index];

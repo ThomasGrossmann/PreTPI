@@ -19,20 +19,16 @@ class _NewsPageState extends State<NewsPage> {
   RefreshController controller = RefreshController(initialRefresh: true);
   final ScrollController _scrollController = ScrollController();
 
-  Future<bool> getNews({bool isRefresh = true}) async {
+  Future<bool> getNews({bool isRefresh = false}) async {
     final response = await http.get(Uri.parse(
         "https://newsapi.org/v2/everything?q=crypto&apiKey=e05f822b086d44e7886db0ebbe4d54f6&q=crypto&page=$currentPage&pageSize=10&sortBy=publishedAt"));
 
     final totalResults = TotalResultsFromJson(response.body);
     final totalPages = int.parse(totalResults.totalResults) / 10;
 
-    if (isRefresh == true) {
-      currentPage = 1;
-    } else {
-      if (currentPage >= totalPages) {
-        controller.loadNoData();
-        return false;
-      }
+    if (currentPage >= totalPages) {
+      controller.loadNoData();
+      return false;
     }
 
     if (response.statusCode == 200) {
@@ -43,9 +39,8 @@ class _NewsPageState extends State<NewsPage> {
         currentPage = 1;
       } else {
         _news.addAll(result.articles);
+        currentPage++;
       }
-
-      currentPage++;
 
       setState(() {});
       return true;
@@ -62,7 +57,7 @@ class _NewsPageState extends State<NewsPage> {
           SchedulerBinding.instance?.addPostFrameCallback((_) {
             _scrollController.animateTo(
                 _scrollController.position.minScrollExtent,
-                duration: const Duration(milliseconds: 700),
+                duration: const Duration(milliseconds: 1000),
                 curve: Curves.fastOutSlowIn);
           });
         },
@@ -75,7 +70,6 @@ class _NewsPageState extends State<NewsPage> {
           final result = await getNews(isRefresh: true);
           if (result) {
             controller.refreshCompleted();
-            currentPage = 1;
           } else {
             controller.refreshFailed();
           }
@@ -90,6 +84,7 @@ class _NewsPageState extends State<NewsPage> {
           LoadStyle.ShowWhenLoading;
         },
         child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
           controller: _scrollController,
           padding: const EdgeInsets.all(8),
           itemCount: _news.length,
@@ -99,8 +94,7 @@ class _NewsPageState extends State<NewsPage> {
               child: Column(
                 children: <Widget>[
                   ListTile(
-                    leading: Text(news.source.name),
-                    title: Text(news.title),
+                    title: Text(news.title, style: const TextStyle(fontWeight: FontWeight.bold)),
                     subtitle: Text(news.description),
                     onTap: () {
                       Navigator.of(context)
@@ -123,12 +117,6 @@ class _NewsPageState extends State<NewsPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getNews();
   }
 
   @override

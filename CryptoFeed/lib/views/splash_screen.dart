@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-            pageBuilder: (c, a1, a2) => TrendingPage(),
+            pageBuilder: (c, a1, a2) => const TrendingPage(),
             transitionsBuilder: (c, anim, a2, child) =>
                 FadeTransition(opacity: anim, child: child),
             transitionDuration: const Duration(milliseconds: 1500)));

@@ -20,6 +20,7 @@ class _NewsPageState extends State<NewsPage> {
   final ScrollController _scrollController = ScrollController();
 
   Future<bool> getNews({bool isRefresh = false}) async {
+    print(currentPage);
     final response = await http.get(Uri.parse(
         "https://newsapi.org/v2/everything?q=crypto&apiKey=e05f822b086d44e7886db0ebbe4d54f6&q=crypto&page=$currentPage&pageSize=10&sortBy=publishedAt"));
 
@@ -35,11 +36,9 @@ class _NewsPageState extends State<NewsPage> {
       final result = NewsDataFromJson(response.body);
 
       if (isRefresh == true) {
-        _news = result.articles;
-        currentPage = 1;
-      } else {
+      _news = result.articles;
+      } else if(isRefresh == false) {
         _news.addAll(result.articles);
-        currentPage++;
       }
 
       setState(() {});
@@ -67,6 +66,7 @@ class _NewsPageState extends State<NewsPage> {
         controller: controller,
         enablePullUp: true,
         onRefresh: () async {
+          currentPage = 1;
           final result = await getNews(isRefresh: true);
           if (result) {
             controller.refreshCompleted();
@@ -75,6 +75,7 @@ class _NewsPageState extends State<NewsPage> {
           }
         },
         onLoading: () async {
+          currentPage++;
           final result = await getNews(isRefresh: false);
           if (result) {
             controller.loadComplete();

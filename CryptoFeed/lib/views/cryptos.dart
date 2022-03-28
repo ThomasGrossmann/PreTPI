@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:http/http.dart' as http;
 import 'package:untitled2/widget/all.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class CryptoPage extends StatefulWidget {
   const CryptoPage({Key? key}) : super(key: key);
@@ -10,9 +11,11 @@ class CryptoPage extends StatefulWidget {
   @override
   State<CryptoPage> createState() => _CryptoPageState();
 }
+
 class _CryptoPageState extends State<CryptoPage> {
   List<dynamic> _cryptos = [];
   final ScrollController _scrollController = ScrollController();
+  RefreshController controller = RefreshController(initialRefresh: true);
 
   List<DropdownMenuItem<String>> get listCurrencies {
     List<DropdownMenuItem<String>> menuItems = [
@@ -33,10 +36,10 @@ class _CryptoPageState extends State<CryptoPage> {
   }
 
   void getCryptos() async {
-    var result =
-    await http.get(Uri.parse("https://api.coingecko.com/api/v3/coins"));
+    final response =
+        await http.get(Uri.parse("https://api.coingecko.com/api/v3/coins"));
     setState(() {
-      _cryptos = json.decode(result.body);
+      _cryptos = json.decode(response.body);
     });
   }
 
@@ -80,8 +83,8 @@ class _CryptoPageState extends State<CryptoPage> {
                   ),
                   title: Text(_cryptos[index]['name']),
                   subtitle: Text(_cryptos[index]['market_data']['current_price']
-                  [holder]
-                      .toString() +
+                              [holder]
+                          .toString() +
                       " $currency"),
                   //trailing: const Icon(Icons.favorite),
                 )

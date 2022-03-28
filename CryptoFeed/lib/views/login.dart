@@ -42,14 +42,27 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Container(
               height: 50,
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: ElevatedButton(
-                child: const Text('Login'),
-                onPressed: () {
-                  nameController.text = "";
-                  passwordController.text = "";
-                },
-              )),
+              padding: const EdgeInsets.all(8),
+              child: Expanded(
+                child: Row(
+                  children: <Widget>[
+                    FloatingActionButton.extended(
+                      label: const Text('Login'),
+                      onPressed: () {
+                        nameController.text = "";
+                        passwordController.text = "";
+                      },
+                    ),
+                    FloatingActionButton.extended(
+                      label: const Text('Register'),
+                      onPressed: () {
+
+                      },
+                    )
+                  ],
+                ),
+              )
+          ),
         ],
       ),
     );

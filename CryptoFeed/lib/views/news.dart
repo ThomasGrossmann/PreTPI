@@ -20,7 +20,6 @@ class _NewsPageState extends State<NewsPage> {
   final ScrollController _scrollController = ScrollController();
 
   Future<bool> getNews({bool isRefresh = false}) async {
-    print(currentPage);
     final response = await http.get(Uri.parse(
         "https://newsapi.org/v2/everything?q=crypto&apiKey=e05f822b086d44e7886db0ebbe4d54f6&q=crypto&page=$currentPage&pageSize=10&sortBy=publishedAt"));
 

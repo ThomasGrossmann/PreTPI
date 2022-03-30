@@ -3,6 +3,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:http/http.dart' as http;
 import 'package:untitled2/data/all.dart';
 import 'package:untitled2/widget/all.dart';
+import 'package:untitled2/views/all.dart';
 
 class TrendingPage extends StatefulWidget {
   const TrendingPage({Key? key}) : super(key: key);
@@ -77,6 +78,8 @@ class _TrendingPageState extends State<TrendingPage> {
     getTrending();
   }
 
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,6 +89,51 @@ class _TrendingPageState extends State<TrendingPage> {
         centerTitle: true,
       ),
       body: _buildTrending(),
+      /*bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: (index) {
+          onItemTapped(index);
+          switch (index) {
+            case 0:
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NewsPage(),
+                  ));
+              break;
+            case 1:
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CryptoPage(),
+                  ));
+              break;
+            case 2:
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TrendingPage(),
+                  ));
+              break;
+          }
+        },
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.new_releases_sharp), label: "News Feed"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.monetization_on),
+            label: "Cryptocurrencies",
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.compare_arrows_outlined), label: "Trendings"),
+        ],
+      ),*/
     );
   }
+
+  /*void onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }*/
 }

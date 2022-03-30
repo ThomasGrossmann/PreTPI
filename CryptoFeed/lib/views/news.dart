@@ -21,7 +21,7 @@ class _NewsPageState extends State<NewsPage> {
 
   Future<bool> getNews({bool isRefresh = false}) async {
     final response = await http.get(Uri.parse(
-        "https://newsapi.org/v2/everything?q=crypto&apiKey=e05f822b086d44e7886db0ebbe4d54f6&q=crypto&page=$currentPage&pageSize=10&sortBy=publishedAt"));
+        "https://newsapi.org/v2/everything?q=crypto&apiKey=e05f822b086d44e7886db0ebbe4d54f6&page=$currentPage&pageSize=10&sortBy=publishedAt"));
 
     final totalResults = TotalResultsFromJson(response.body);
     final totalPages = int.parse(totalResults.totalResults) / 10;
@@ -35,8 +35,8 @@ class _NewsPageState extends State<NewsPage> {
       final result = NewsDataFromJson(response.body);
 
       if (isRefresh == true) {
-      _news = result.articles;
-      } else if(isRefresh == false) {
+        _news = result.articles;
+      } else if (isRefresh == false) {
         _news.addAll(result.articles);
       }
 
@@ -94,20 +94,26 @@ class _NewsPageState extends State<NewsPage> {
               child: Column(
                 children: <Widget>[
                   ListTile(
-                    title: Text(news.title, style: const TextStyle(fontWeight: FontWeight.bold)),
+                    title: Text(news.title,
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                     subtitle: Text(news.description),
                     onTap: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) {
-                        return OneNewsPage(
-                            news.source,
-                            news.url,
-                            news.urlToImage,
-                            news.title,
-                            news.publishedAt,
-                            news.content,
-                            news.description);
-                      }));
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                            pageBuilder: (c, a1, a2) => OneNewsPage(
+                                news.source,
+                                news.url,
+                                news.urlToImage,
+                                news.title,
+                                news.publishedAt,
+                                news.content,
+                                news.description),
+                            transitionsBuilder: (c, anim, a2, child) =>
+                                FadeTransition(opacity: anim, child: child),
+                            transitionDuration:
+                                const Duration(milliseconds: 200)),
+                      );
                     },
                   )
                 ],
@@ -119,6 +125,8 @@ class _NewsPageState extends State<NewsPage> {
     );
   }
 
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,7 +135,52 @@ class _NewsPageState extends State<NewsPage> {
         title: const Text('News Feed'),
         centerTitle: true,
       ),
+      /*bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: (index) {
+          onItemTapped(index);
+          switch (index) {
+            case 0:
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NewsPage(),
+                  ));
+              break;
+            case 1:
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CryptoPage(),
+                  ));
+              break;
+            case 2:
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TrendingPage(),
+                  ));
+              break;
+          }
+        },
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.new_releases_sharp), label: "News Feed"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.monetization_on),
+            label: "Cryptocurrencies",
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.compare_arrows_outlined), label: "Trendings"),
+        ],
+      ),*/
       body: _buildNews(),
     );
   }
+
+  /*void onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }*/
 }

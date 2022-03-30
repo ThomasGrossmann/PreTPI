@@ -48,55 +48,55 @@ class _OneNewsPageState extends State<OneNewsPage> {
         centerTitle: true,
       ),
       body: Column(
-        children: <Widget>[
-          Card(
-            child: ListTile(
-              title: Text(
-                widget.title,
-                style: const TextStyle(fontSize: 23),
+          children: <Widget>[
+            Card(
+              child: ListTile(
+                title: Text(
+                  widget.title,
+                  style: const TextStyle(fontSize: 23),
+                ),
+                subtitle: TextButton(
+                    onPressed: () {
+                      url.launch(widget.url,
+                          forceWebView: true, enableJavaScript: true);
+                    },
+                    child: const Text('Click to open in navigator')),
               ),
-              subtitle: TextButton(
-                  onPressed: () {
-                    url.launch(widget.url,
-                        forceWebView: true, enableJavaScript: true);
-                  },
-                  child: const Text('Click to open in navigator')),
             ),
-          ),
-          Image.network(
-            widget.urlToImage,
-            fit: BoxFit.fill,
-            errorBuilder: (context, error, stackTrace) {
-              return Container(
-                color: Colors.amber,
-                alignment: Alignment.center,
-                child: const Text(
-                  'Cannot load the image',
-                  style: TextStyle(fontSize: 30),
-                ),
-              );
-            },
-            loadingBuilder: (BuildContext context, Widget child,
-                ImageChunkEvent? loadingProgress) {
-              if (loadingProgress == null) return child;
-              return Center(
-                child: CircularProgressIndicator(
-                  value: loadingProgress.expectedTotalBytes != null
-                      ? loadingProgress.cumulativeBytesLoaded /
-                      loadingProgress.expectedTotalBytes!
-                      : null,
-                ),
-              );
-            },
-          ),
-          Card(
-            child: ListTile(
-              title: Text(widget.content),
+            Image.network(
+              widget.urlToImage,
+              fit: BoxFit.fill,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  color: Colors.amber,
+                  alignment: Alignment.center,
+                  child: const Text(
+                    'Cannot load the image',
+                    style: TextStyle(fontSize: 30),
+                  ),
+                );
+              },
+              loadingBuilder: (BuildContext context, Widget child,
+                  ImageChunkEvent? loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes!
+                        : null,
+                  ),
+                );
+              },
             ),
-          ),
-          Text('Posted ' + convertToAgo(ago))
-        ],
-      ),
+            Card(
+              child: ListTile(
+                title: Text(widget.content),
+              ),
+            ),
+            Text('Posted ' + convertToAgo(ago))
+          ],
+        ),
     );
   }
 }

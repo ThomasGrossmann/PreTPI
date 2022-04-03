@@ -1,4 +1,3 @@
-/* Testing purposes at the moment */
 import 'dart:convert';
 
 TrendingData TrendingDataFromJson(String str) =>

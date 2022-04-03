@@ -4,7 +4,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:http/http.dart' as http;
 import 'package:untitled2/widget/all.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:untitled2/views/all.dart';
 
 class CryptoPage extends StatefulWidget {
   const CryptoPage({Key? key}) : super(key: key);
@@ -15,6 +14,7 @@ class CryptoPage extends StatefulWidget {
 
 class _CryptoPageState extends State<CryptoPage> {
   List<dynamic> _cryptos = [];
+  //List<dynamic> _foundCryptos = [];
   final ScrollController _scrollController = ScrollController();
   RefreshController controller = RefreshController(initialRefresh: true);
 
@@ -37,8 +37,8 @@ class _CryptoPageState extends State<CryptoPage> {
   }
 
   void getCryptos() async {
-    final response = await http
-        .get(Uri.parse("https://api.coingecko.com/api/v3/coins?per_page=10"));
+    final response =
+        await http.get(Uri.parse("https://api.coingecko.com/api/v3/coins"));
     setState(() {
       _cryptos = json.decode(response.body);
     });
@@ -52,71 +52,92 @@ class _CryptoPageState extends State<CryptoPage> {
     });
   }
 
+  /*void _runFilter(String enteredKeyword) {
+    List<dynamic> results = [];
+    if (enteredKeyword.isEmpty) {
+      results = _cryptos;
+    } else {
+      results = _cryptos
+          .where((element) => element['name']
+              .toString()
+              .toLowerCase()
+              .contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
+    setState(() {
+      _foundCryptos = results;
+    });
+  }*/
+
   Widget _buildCryptos() {
     String currency = holder.toUpperCase();
-    _cryptos.sort((b, a) => a['market_data']['current_price'][holder]
-        .compareTo(b["market_data"]["current_price"][holder]));
+    /*_cryptos.sort((b, a) => a['market_data']['current_price'][holder]
+        .compareTo(b["market_data"]["current_price"][holder]));*/
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-        label: const Text('Go back to top'),
-        onPressed: () {
-          SchedulerBinding.instance?.addPostFrameCallback((_) {
-            _scrollController.animateTo(
-                _scrollController.position.minScrollExtent,
-                duration: const Duration(milliseconds: 1000),
-                curve: Curves.fastOutSlowIn);
-          });
-        },
-        icon: const Icon(Icons.arrow_upward),
-      ),
-      body: /*SmartRefresher(
-        controller: controller,
-        onRefresh: () {
-
-        },
-        onLoading: () {
-
-        },
-        child: */
-          ListView.builder(
-        controller: _scrollController,
-        padding: const EdgeInsets.all(8),
-        itemCount: _cryptos.length,
-        itemBuilder: (BuildContext context, int index) {
-          String image = _cryptos[index]['image']['large'];
-          return Card(
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: NetworkImage(image),
-                    backgroundColor: Colors.transparent,
-                  ),
-                  title: Text(_cryptos[index]['name']),
-                  subtitle: Text(_cryptos[index]['market_data']['current_price']
-                              [holder]
-                          .toString() +
-                      " $currency"),
-                  //trailing: const Icon(Icons.favorite),
-                )
-              ],
-            ),
-          );
-        },
-      ),
-      //)
-    );
+        floatingActionButton: FloatingActionButton.extended(
+          label: const Text('Go back to top'),
+          onPressed: () {
+            SchedulerBinding.instance?.addPostFrameCallback((_) {
+              _scrollController.animateTo(
+                  _scrollController.position.minScrollExtent,
+                  duration: const Duration(milliseconds: 1000),
+                  curve: Curves.fastOutSlowIn);
+            });
+          },
+          icon: const Icon(Icons.arrow_upward),
+        ),
+        /*appBar: AppBar(
+        leading: const Text(""),
+        actions: <Widget>[
+          TextField(
+            onChanged: (value) => _runFilter(value),
+            decoration: const InputDecoration(
+                labelText: 'Search', suffixIcon: Icon(Icons.search)),
+          ),
+        ],
+      ),*/
+        body: /*_foundCryptos.isNotEmpty
+          ? */
+            ListView.builder(
+          controller: _scrollController,
+          padding: const EdgeInsets.all(8),
+          itemCount: _cryptos.length,
+          itemBuilder: (BuildContext context, int index) {
+            final cryptos = _cryptos[index];
+            String image = cryptos['image']['large'];
+            return Card(
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      backgroundImage: NetworkImage(image),
+                      backgroundColor: Colors.transparent,
+                    ),
+                    title: Text(cryptos['name']),
+                    subtitle: Text("" +
+                        cryptos['market_data']['current_price'][holder]
+                            .toString() +
+                        " $currency"),
+                    //trailing: const Icon(Icons.favorite),
+                  )
+                ],
+              ),
+            );
+          },
+        )
+        //: Text("No Results found !"),
+        );
   }
 
   @override
   void initState() {
-    super.initState();
+    //_foundCryptos = _cryptos;
     getCryptos();
+    super.initState();
   }
 
   String selectedValue = 'usd';
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -139,54 +160,7 @@ class _CryptoPageState extends State<CryptoPage> {
           )
         ],
       ),
-      body: Container(
-        child: _buildCryptos(),
-      ),
-      /*bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: (index) {
-          onItemTapped(index);
-          switch (index) {
-            case 0:
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NewsPage(),
-                  ));
-              break;
-            case 1:
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const CryptoPage(),
-                  ));
-              break;
-            case 2:
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const TrendingPage(),
-                  ));
-              break;
-          }
-        },
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.new_releases_sharp), label: "News Feed"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.monetization_on),
-            label: "Cryptocurrencies",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.compare_arrows_outlined), label: "Trendings"),
-        ],
-      ),*/
+      body: _buildCryptos(),
     );
   }
-
-/*void onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }*/
 }

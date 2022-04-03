@@ -134,6 +134,12 @@ class _NewsPageState extends State<NewsPage> {
       appBar: AppBar(
         title: const Text('News Feed'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search),
+          )
+        ],
       ),
       /*bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,

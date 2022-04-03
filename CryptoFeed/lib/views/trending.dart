@@ -3,7 +3,6 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:http/http.dart' as http;
 import 'package:untitled2/data/all.dart';
 import 'package:untitled2/widget/all.dart';
-import 'package:untitled2/views/all.dart';
 
 class TrendingPage extends StatefulWidget {
   const TrendingPage({Key? key}) : super(key: key);
@@ -11,6 +10,7 @@ class TrendingPage extends StatefulWidget {
   @override
   State<TrendingPage> createState() => _TrendingPageState();
 }
+
 class _TrendingPageState extends State<TrendingPage> {
   static List<Trending> _trending = [];
 
@@ -41,35 +41,35 @@ class _TrendingPageState extends State<TrendingPage> {
   Widget _buildTrending() {
     return Scaffold(
         body: SmartRefresher(
-          controller: controller,
-          onRefresh: () async {
-            final result = await getTrending(isRefresh: true);
-            if (result) {
-              controller.refreshCompleted();
-            } else {
-              controller.refreshFailed();
-            }
-          },
-          child: ListView.builder(
-            padding: const EdgeInsets.all(8),
-            itemCount: _trending.length,
-            itemBuilder: (context, index) {
-              final trending = _trending[index];
-              return Card(
-                child: Column(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Image.network(trending.item.large),
-                      title: Text(trending.item.name),
-                      subtitle: Text(trending.item.symbol),
-                      trailing: Text('#${index + 1}'),
-                    )
-                  ],
-                ),
-              );
-            },
-          ),
-        ));
+      controller: controller,
+      onRefresh: () async {
+        final result = await getTrending(isRefresh: true);
+        if (result) {
+          controller.refreshCompleted();
+        } else {
+          controller.refreshFailed();
+        }
+      },
+      child: ListView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: _trending.length,
+        itemBuilder: (context, index) {
+          final trending = _trending[index];
+          return Card(
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  leading: Image.network(trending.item.large),
+                  title: Text(trending.item.name),
+                  subtitle: Text(trending.item.symbol),
+                  trailing: Text('#${index + 1}'),
+                )
+              ],
+            ),
+          );
+        },
+      ),
+    ));
   }
 
   @override

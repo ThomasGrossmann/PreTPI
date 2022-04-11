@@ -41,6 +41,7 @@ class News {
     required this.urlToImage,
     required this.url,
     required this.content,
+    required this.author,
     required this.source,
   });
 
@@ -50,6 +51,7 @@ class News {
   String urlToImage;
   String url;
   String content;
+  String author;
   Source source;
 
   factory News.fromJson(Map<String, dynamic> json) => News(
@@ -59,6 +61,7 @@ class News {
         urlToImage: json['urlToImage'].toString(),
         url: json['url'].toString(),
         content: json['content'].toString(),
+        author: json['author'].toString(),
         source: Source.fromJson(json['source']),
       );
 
@@ -69,6 +72,7 @@ class News {
         "urlToImage": urlToImage,
         "url": url,
         "content": content,
+        "author": author,
         "source": source,
       };
 }

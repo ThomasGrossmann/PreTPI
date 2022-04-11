@@ -108,7 +108,8 @@ class _NewsPageState extends State<NewsPage> {
                                 news.title,
                                 news.publishedAt,
                                 news.content,
-                                news.description),
+                                news.description,
+                                news.author),
                             transitionsBuilder: (c, anim, a2, child) =>
                                 FadeTransition(opacity: anim, child: child),
                             transitionDuration:
@@ -125,8 +126,6 @@ class _NewsPageState extends State<NewsPage> {
     );
   }
 
-  int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,59 +133,14 @@ class _NewsPageState extends State<NewsPage> {
       appBar: AppBar(
         title: const Text('News Feed'),
         centerTitle: true,
-        actions: [
+        /*actions: [
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.search),
           )
-        ],
+        ],*/
       ),
-      /*bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: (index) {
-          onItemTapped(index);
-          switch (index) {
-            case 0:
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NewsPage(),
-                  ));
-              break;
-            case 1:
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const CryptoPage(),
-                  ));
-              break;
-            case 2:
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const TrendingPage(),
-                  ));
-              break;
-          }
-        },
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.new_releases_sharp), label: "News Feed"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.monetization_on),
-            label: "Cryptocurrencies",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.compare_arrows_outlined), label: "Trendings"),
-        ],
-      ),*/
       body: _buildNews(),
     );
   }
-
-  /*void onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }*/
 }
